@@ -1,7 +1,48 @@
+/**
+ * @brief Archivo de implementacion de funciones (TP01).
+ *
+ * El archivo contiene las implementaciones de todas las funciones del TP01.
+ * @file funciones.c
+ * @author Juan Ignacio Guglielmone
+ * @date 14/04/2018
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "funciones.h"
+
+void imprimirError(int codigo){
+     switch(codigo){
+        case 1:
+            printf("El nombre ingresado es incorrecto!!!!\n");
+            break;
+        case 2:
+            printf("La edad ingresada es incorrecta!!!!\n");
+            break;
+        case 3:
+            printf("El DNI ingresado es incorrecto!!!!\n");
+            break;
+        case 4:
+            printf("El DNI ingresado ya se encuentra cargado!!!!\n");
+            break;
+        case 5:
+            printf("No hay mas espacio para cargar personas!!!!\n");
+            break;
+        case 6:
+            printf("No se encontro el numero de DNI a borrar!!!!\n");
+            break;
+        case 7:
+            printf("El operando esta fuera de rango!!!!\n");
+            break;
+        case 8:
+            printf("El resultado esta fuera de rango!!!!\n");
+            break;
+     }
+     system("pause");
+}
 
 int obtenerEspacioLibre(EPersona lista[]){
     int indice=0;
@@ -18,23 +59,10 @@ int obtenerEspacioLibre(EPersona lista[]){
 int buscarPorDni(EPersona lista[], int dni){
     int indice=0;
 
-    do{
-        if(lista[indice].dni==dni && lista[indice].estado){
-            break;
-        }
-    }while(++indice<TPERSONA);
+    while(!(lista[indice].estado && lista[indice].dni==dni) && ++indice<TPERSONA);
 
     if(indice<TPERSONA){
         return indice;
-    }else{
-        return -1;
-    }
-
-
-    while(lista[indice].dni!=dni && ++indice<TPERSONA);
-
-    if(indice<TPERSONA){
-        return indice-1;
     }else{
         return -1;
     }
@@ -56,17 +84,18 @@ void agregarPersona(EPersona lista[]){
         while(nombre==NULL || edad==NULL || dni==NULL){
         system("cls");
         fflush(stdin);
-        printf("Cargar persona\n");
+        printf("Cargar persona:\n");
         if(nombre){
             printf("Nombre: %s\n",nombre);
         }else{
             nombre=malloc(sizeof(char) * TDATO);
             printf("Ingrese nombre: ");
             if(leerValidarDato(nombre,1)){
-                strcpy(lista[indice].nombre,nombre);
+                strcpy(lista[indice].nombre,formatearNombre(nombre));
             }else{
                 free(nombre);
                 nombre=NULL;
+                imprimirError(1);
             }
         }
         if(edad){
@@ -79,6 +108,7 @@ void agregarPersona(EPersona lista[]){
             }else{
                 free(edad);
                 edad=NULL;
+                imprimirError(2);
             }
         }
         if(dni){
@@ -91,59 +121,76 @@ void agregarPersona(EPersona lista[]){
                 if(buscarPorDni(lista,parDni)==-1){
                     lista[indice].dni=parDni;
                 }else{
-                    printf("\nEl dni ya existe!!!");
                     free(dni);
                     dni=NULL;
+                    imprimirError(4);
                 }
             }else{
                 free(dni);
                 dni=NULL;
+                imprimirError(3);
             }
         }
-        system("pause");
     }
         lista[indice].estado=1;
         free(nombre);
         free(edad);
         free(dni);
     }else{
-        printf("No hay espacio para cargar personas");
+        imprimirError(5);
     }
 }
 
 char *leerValidarDato(char *dato,char tipo){
 
     fflush(stdin);
-    gets(dato);
 
-    int tam=strlen(dato);
+    char *aux=malloc(sizeof(char) * TDATO);
 
-    if(!(tam>TDATO) && tam!=0){
+    if(aux=fgets(dato, 50, stdin)){
         do{
+
             switch(tipo){
 
             case 1:
-                if (!(*dato >= 'A' && *dato <= 'Z' || *dato >= 'a' && *dato <= 'z')){
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
                     dato=NULL;
+
                 }
                 break;
             case 2:
-                if (!(*dato >= '0' && *dato <= '9')){
+                if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
             case 3:
-                if (!(*dato >= '0' && *dato <= '9') && *dato!='.'){
+                if (!(*aux >= '0' && *aux <= '9' || *aux!='.' || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
             }
-            if(dato==NULL){
+            if(!dato){
                 break;
             }
-        }while(*++dato!='\0');
+        }while(*++aux!='\0');
     }else{
         dato=NULL;
+    }
+
+    return dato;
+}
+
+char *formatearNombre(char *dato){
+    char *aux=malloc(sizeof(char) * TDATO);
+    aux=dato;
+    *aux=toupper(*aux);
+    while(*(++aux)!='\n'){
+        if(*aux==' '){
+            aux++;
+            *aux=toupper(*aux);
+        }else{
+            *aux=tolower(*aux);
+        }
     }
 
     return dato;
@@ -192,6 +239,7 @@ void imprimirListaOrdenada(EPersona lista[]){
             printf("-----------------------------------\n");
         }
     }
+    system("pause");
 }
 
 void borrarPersona(EPersona lista[]){
@@ -211,10 +259,10 @@ void borrarPersona(EPersona lista[]){
     if((indice=buscarPorDni(lista,atoi(dni)))!=-1){
         lista[indice].estado=0;
         printf("Se borro el dni");
+        system("pause");
     }else{
-           printf("DNI no encontrado");
+           imprimirError(6);
     }
-
 }
 
 void imprimirGrafico(EPersona lista[]){
@@ -260,5 +308,6 @@ void imprimirGrafico(EPersona lista[]){
     }else{
         printf("No hay personas cargadas!!!\n");
     }
+    system("pause");
 }
 

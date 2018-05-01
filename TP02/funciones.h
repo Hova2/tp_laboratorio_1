@@ -13,6 +13,15 @@ typedef struct {
 
 }EPersona;
 
+/** @brief Imprime error.
+ *
+ * Funcion que permite imprimir un error que surge de las diferentes validaciones,
+ * mediante un codigo de error.
+ * @param codigo Es el codigo del error, del tipo entero.
+ * @return No se devuelve nada.
+ */
+void imprimirError(int);
+
 /**
  * Obtiene el primer indice libre del array.
  * @param lista el array se pasa como parametro.
@@ -29,6 +38,7 @@ int obtenerEspacioLibre(EPersona []);
 int buscarPorDni(EPersona [], int);
 
 char *leerValidarDato(char *,char);
+char *formatearNombre(char *);
 void inisializarListaPersona(EPersona[]);
 void agregarPersona(EPersona[]);
 void borrarPersona(EPersona []);
