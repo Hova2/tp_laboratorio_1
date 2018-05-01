@@ -35,10 +35,10 @@ void imprimirError(int codigo){
             printf("No se encontro el numero de DNI a borrar!!!!\n");
             break;
         case 7:
-            printf("El operando esta fuera de rango!!!!\n");
+            printf("No hay personas cargadas!!!!\n");
             break;
         case 8:
-            printf("El resultado esta fuera de rango!!!!\n");
+            printf("La edad debe estar entre 0 y 125!!!!\n");
             break;
      }
      system("pause");
@@ -104,7 +104,14 @@ void agregarPersona(EPersona lista[]){
             edad=malloc(sizeof(char) * TDATO);
             printf("Ingrese edad: ");
             if(leerValidarDato(edad,2)){
-                lista[indice].edad=atoi(edad);
+                int auxEdad=atoi(edad);
+                if(auxEdad>=EDADMIN && auxEdad<=EDADMAX){
+                    lista[indice].edad=auxEdad;
+                }else{
+                    free(edad);
+                    edad=NULL;
+                    imprimirError(8);
+                }
             }else{
                 free(edad);
                 edad=NULL;
@@ -247,7 +254,7 @@ void borrarPersona(EPersona lista[]){
     }
     if((indice=buscarPorDni(lista,atoi(dni)))!=-1){
         lista[indice].estado=0;
-        printf("Se borro el dni");
+        printf("Se borro el dni ingresado!!!\n");
         system("pause");
     }else{
            imprimirError(6);
@@ -294,9 +301,9 @@ void imprimirGrafico(EPersona lista[]){
         }
         printf("-----------------\n");
         printf("<18 | 19-35 | >35\n");
+        system("pause");
     }else{
-        printf("No hay personas cargadas!!!\n");
+        imprimirError(7);
     }
-    system("pause");
 }
 

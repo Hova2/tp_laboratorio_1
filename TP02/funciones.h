@@ -1,8 +1,10 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 #define NULL 0
-#define TPERSONA 20
+#define TPERSONA 2
 #define TDATO 50
+#define EDADMIN 0
+#define EDADMAX 125
 
 typedef struct {
 
