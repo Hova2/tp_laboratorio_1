@@ -4,7 +4,7 @@
     * Guglielmone Juan Ignacio
 
 #### 1. TP01 - Finalizado
-#### 2. TP02 - En proceso
+#### 2. TP02 - Finalizado
 #### 3. TP03 - En proceso
 #### 4. TP03 - En proceso
 
