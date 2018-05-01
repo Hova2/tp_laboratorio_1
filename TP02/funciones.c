@@ -1,10 +1,10 @@
 /**
- * @brief Archivo de implementacion de funciones (TP01).
+ * @brief Archivo de implementacion de funciones (TP02).
  *
- * El archivo contiene las implementaciones de todas las funciones del TP01.
+ * El archivo contiene las implementaciones de todas las funciones del TP02.
  * @file funciones.c
  * @author Juan Ignacio Guglielmone
- * @date 14/04/2018
+ * @date 04/05/2018
  *
 */
 
@@ -66,6 +66,61 @@ int buscarPorDni(EPersona lista[], int dni){
     }else{
         return -1;
     }
+}
+
+char *leerValidarDato(char *dato,char tipo){
+
+    fflush(stdin);
+
+    char *aux=malloc(sizeof(char) * TDATO);
+
+    if(aux=fgets(dato, 50, stdin)){
+        do{
+
+            switch(tipo){
+
+            case 1:
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
+                    dato=NULL;
+
+                }
+                break;
+            case 2:
+                if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
+                    dato=NULL;
+                }
+                break;
+            case 3:
+                if (!(*aux >= '0' && *aux <= '9' || *aux!='.' || *aux=='\n')){
+                    dato=NULL;
+                }
+                break;
+            }
+            if(!dato){
+                break;
+            }
+        }while(*++aux!='\0');
+    }else{
+        dato=NULL;
+    }
+
+    return dato;
+}
+
+char *formatearNombre(char *dato){
+    char *aux=malloc(sizeof(char) * TDATO);
+    aux=dato;
+    *aux=toupper(*aux);
+    while(*(++aux)!='\n'){
+        if(*aux==' '){
+            aux++;
+            *aux=toupper(*aux);
+        }else{
+            *aux=tolower(*aux);
+        }
+    }
+
+    return dato;
 }
 
 void inisializarListaPersona(EPersona lista[]){
@@ -148,59 +203,27 @@ void agregarPersona(EPersona lista[]){
     }
 }
 
-char *leerValidarDato(char *dato,char tipo){
-
-    fflush(stdin);
-
-    char *aux=malloc(sizeof(char) * TDATO);
-
-    if(aux=fgets(dato, 50, stdin)){
-        do{
-
-            switch(tipo){
-
-            case 1:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
-                    dato=NULL;
-
-                }
-                break;
-            case 2:
-                if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
-                    dato=NULL;
-                }
-                break;
-            case 3:
-                if (!(*aux >= '0' && *aux <= '9' || *aux!='.' || *aux=='\n')){
-                    dato=NULL;
-                }
-                break;
+void borrarPersona(EPersona lista[]){
+    char *dni=NULL;
+    int indice;
+    while(!dni){
+        system("cls");
+        if(!dni){
+            dni=malloc(sizeof(char) * TDATO);
+            printf("Ingrese dni a borrar: ");
+            if(!leerValidarDato(dni,2)){
+                free(dni);
+                dni=NULL;
             }
-            if(!dato){
-                break;
-            }
-        }while(*++aux!='\0');
-    }else{
-        dato=NULL;
-    }
-
-    return dato;
-}
-
-char *formatearNombre(char *dato){
-    char *aux=malloc(sizeof(char) * TDATO);
-    aux=dato;
-    *aux=toupper(*aux);
-    while(*(++aux)!='\n'){
-        if(*aux==' '){
-            aux++;
-            *aux=toupper(*aux);
-        }else{
-            *aux=tolower(*aux);
         }
     }
-
-    return dato;
+    if((indice=buscarPorDni(lista,atoi(dni)))!=-1){
+        lista[indice].estado=0;
+        printf("Se borro el dni ingresado!!!\n");
+        system("pause");
+    }else{
+           imprimirError(6);
+    }
 }
 
 void imprimirListaOrdenada(EPersona lista[]){
@@ -236,29 +259,6 @@ void imprimirListaOrdenada(EPersona lista[]){
         }
     }
     system("pause");
-}
-
-void borrarPersona(EPersona lista[]){
-    char *dni=NULL;
-    int indice;
-    while(!dni){
-        system("cls");
-        if(!dni){
-            dni=malloc(sizeof(char) * TDATO);
-            printf("Ingrese dni a borrar: ");
-            if(!leerValidarDato(dni,2)){
-                free(dni);
-                dni=NULL;
-            }
-        }
-    }
-    if((indice=buscarPorDni(lista,atoi(dni)))!=-1){
-        lista[indice].estado=0;
-        printf("Se borro el dni ingresado!!!\n");
-        system("pause");
-    }else{
-           imprimirError(6);
-    }
 }
 
 void imprimirGrafico(EPersona lista[]){
@@ -306,4 +306,3 @@ void imprimirGrafico(EPersona lista[]){
         imprimirError(7);
     }
 }
-

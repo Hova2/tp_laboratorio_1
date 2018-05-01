@@ -1,3 +1,13 @@
+/**
+ * @brief Archivo principal (TP02).
+ *
+ * El archivo contiene el main principal del TP02.
+ * @file main.c
+ * @author Juan Ignacio Guglielmone
+ * @date 04/05/2018
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
