@@ -199,14 +199,6 @@ char *formatearNombre(char *dato){
 void imprimirListaOrdenada(EPersona lista[]){
     system("cls");
     for(int i=0;i<TPERSONA;i++){
-        if(lista[i].estado){
-            printf("Nombre: %s\n",lista[i].nombre);
-            printf("Edad  : %d\n",lista[i].edad);
-            printf("DNI   : %d\n",lista[i].dni);
-            printf("-----------------------------------\n");
-        }
-    }
-    for(int i=0;i<TPERSONA;i++){
         for(int j=0;j<TPERSONA;j++){
             if(lista[i].estado && lista[j].estado){
                 if(strcmp(lista[j].nombre,lista[i].nombre)>0){
@@ -228,9 +220,6 @@ void imprimirListaOrdenada(EPersona lista[]){
             }
         }
     }
-    printf("-----------------------------------\n");
-    printf("----------ORDEN--------------------\n");
-    printf("-----------------------------------\n");
     for(int i=0;i<TPERSONA;i++){
         if(lista[i].estado){
             printf("Nombre: %s\n",lista[i].nombre);
