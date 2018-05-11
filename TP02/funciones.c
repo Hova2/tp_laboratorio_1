@@ -40,6 +40,9 @@ void imprimirError(int codigo){
         case 8:
             printf("La edad debe estar entre 0 y 125!!!!\n");
             break;
+        case 9:
+            printf("La opcion ingresada es incorrecta!!!!\n");
+            break;
      }
      system("pause");
 }
@@ -68,30 +71,39 @@ int buscarPorDni(EPersona lista[], int dni){
     }
 }
 
+char existenPersonasCargadas(EPersona lista[]){
+    for(int i=0;i<TPERSONA;i++){
+        if(lista[i].estado){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 char *leerValidarDato(char *dato,char tipo){
 
     fflush(stdin);
 
-    char *aux=malloc(sizeof(char) * TDATO);
+    char *aux;
 
-    if(aux=fgets(dato, 50, stdin)){
+    if((aux=fgets(dato, 50, stdin))){
         do{
 
             switch(tipo){
 
             case 1:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
+                if (!((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z') || *aux==' ' || *aux=='\n')){
                     dato=NULL;
 
                 }
                 break;
             case 2:
-                if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
+                if (!((*aux >= '0' && *aux <= '9') || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
             case 3:
-                if (!(*aux >= '0' && *aux <= '9' || *aux!='.' || *aux=='\n')){
+                if (!((*aux >= '0' && *aux <= '9') || *aux!='.' || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
@@ -279,30 +291,26 @@ void imprimirGrafico(EPersona lista[]){
         }
     }
 
-    if(menor!=0 || entre!=0 || mayor!=0){
-        system("cls");
-        printf(" Grafico edades: \n");
-        printf("-----------------\n");
-        for(int i=TPERSONA;i>=0;i--){
-            if((menor-i)>0){
-                printf(" *  |");
-            }else{
-                printf("    |");
-            }
-            if((entre-i)>0){
-                printf("   *   |");
-            }else{
-                printf("       |");
-            }
-            if((mayor-i)>0){
-                printf("  *");
-            }
-            printf("\n");
+    system("cls");
+    printf(" Grafico edades: \n");
+    printf("-----------------\n");
+    for(int i=TPERSONA;i>=0;i--){
+        if((menor-i)>0){
+            printf(" *  |");
+        }else{
+            printf("    |");
         }
-        printf("-----------------\n");
-        printf("<18 | 19-35 | >35\n");
-        system("pause");
-    }else{
-        imprimirError(7);
+        if((entre-i)>0){
+            printf("   *   |");
+        }else{
+            printf("       |");
+        }
+        if((mayor-i)>0){
+            printf("  *");
+        }
+        printf("\n");
     }
+    printf("-----------------\n");
+    printf("<18 | 19-35 | >35\n");
+    system("pause");
 }
