@@ -28,3 +28,18 @@
 	<string.h>
 	"funciones.h"
 
+1526053781 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp02\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1526053027 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp02\funciones.h
+
+1526053899 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp02\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"funciones.h"
+

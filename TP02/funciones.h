@@ -10,7 +10,6 @@
 
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
-#define NULL 0
 #define TPERSONA 20
 #define TDATO 50
 #define EDADMIN 0
@@ -49,6 +48,13 @@ int obtenerEspacioLibre(EPersona []);
  */
 int buscarPorDni(EPersona [], int);
 
+
+/**
+ * Busca dentro del arreglo de personas si hay alguna persona cargada.
+ * @param lista el array se pasa como parametro, del tipo arreglo de EPersona.
+ * @return devuelve 0 si no hay personas cargadas o 1 si hay personas cargadas.
+ */
+char existenPersonasCargadas(EPersona []);
 /**
  * Lee por entrada estandar una cadena de caracteres y valida que lo ingresado sea correcto.
  * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.

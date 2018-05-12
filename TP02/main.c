@@ -26,32 +26,54 @@ int main()
     {
         system("cls");
         fflush(stdin);
+        opcion=0;
 
-        printf("1- Agregar persona\n");
-        printf("2- Borrar persona\n");
-        printf("3- Imprimir lista ordenada por nombre\n");
-        printf("4- Imprimir grafico de edades\n\n");
-        printf("5- Salir\n");
+        if(existenPersonasCargadas(listaPersona)){
+            printf("1- Agregar persona\n");
+            printf("2- Borrar persona\n");
+            printf("3- Imprimir lista ordenada por nombre\n");
+            printf("4- Imprimir grafico de edades\n\n");
+            printf("5- Salir\n");
 
-        scanf("%d",&opcion);
+            scanf("%d",&opcion);
 
-        switch(opcion)
-        {
-            case 1:
-                agregarPersona(listaPersona);
-                break;
-            case 2:
-                borrarPersona(listaPersona);
-                break;
-            case 3:
-                imprimirListaOrdenada(listaPersona);
-                break;
-            case 4:
-                imprimirGrafico(listaPersona);
-                break;
-            case 5:
-                seguir = 'n';
-                break;
+            switch(opcion){
+                case 1:
+                    agregarPersona(listaPersona);
+                    break;
+                case 2:
+                    borrarPersona(listaPersona);
+                    break;
+                case 3:
+                    imprimirListaOrdenada(listaPersona);
+                    break;
+                case 4:
+                    imprimirGrafico(listaPersona);
+                    break;
+                case 5:
+                    seguir = 'n';
+                    break;
+                default:
+                    imprimirError(9);
+                    break;
+            }
+        }else{
+            printf("1- Agregar persona\n");
+            printf("5- Salir\n");
+
+            scanf("%d",&opcion);
+
+            switch(opcion){
+                case 1:
+                    agregarPersona(listaPersona);
+                    break;
+                case 5:
+                    seguir = 'n';
+                    break;
+                default:
+                    imprimirError(9);
+                    break;
+            }
         }
     }
     return 0;
