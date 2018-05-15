@@ -5,44 +5,6 @@
 #include "propietario.h"
 #include "auto.h"
 
-void imprimirMenu(int opcionMenu){
-
-        int opcion=0;
-
-        system("cls");
-        fflush(stdin);
-
-        switch(opcionMenu){
-            case 1:
-
-        scanf("%d",&opcion);
-
-        switch(opcion){
-            case 1:
-                agregarPropietario(propietarios);
-                break;
-            case 2:
-                modificarPropietario(propietarios);
-                break;
-            case 3:
-                bajaPropietario(propietarios);
-                break;
-            case 4:
-                agregarAuto(autos,propietarios);
-                break;
-            case 5:
-                bajaAuto(autos,propietarios);
-                system("pause");
-                break;
-            case 6:
-                seguir = 'n';
-                break;
-        }
-        }
-
-
-}
-
 void imprimirOpcionMenu(int opcion){
 
     switch(opcion){
@@ -59,16 +21,27 @@ void imprimirOpcionMenu(int opcion){
             printf("4- Agregar auto\n");
             break;
         case 5:
-            printf("5- Egreso auto\n");
+            printf("5- Egreso de auto\n");
             break;
         case 6:
-            printf("6- Salir\n");
+            printf("6- Recaudacion total\n");
+            break;
+        case 7:
+            printf("7- Recaudacion total por marca\n");
+            break;
+        case 8:
+            printf("8- Propietarios con autos AUDI estacionados\n");
+            break;
+        case 9:
+            printf("9- Autos estacionados\n");
+            break;
+        case 10:
+            printf("10- Salir\n");
             break;
     }
 
     return;
 }
-
 
 void imprimirError(int codigo){
      switch(codigo){
@@ -112,7 +85,7 @@ void imprimirError(int codigo){
             printf("No hay espacio para cargar autos!!!!\n");
             break;
         case 14:
-            printf("El ID no existe!!!!\n");
+            printf("La opcion ingresada es invalida!!!!\n");
             break;
      }
      system("pause");

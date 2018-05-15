@@ -9,6 +9,18 @@ void inisializarPropietario(EPropietario lista[]){
     while(!(lista[indice].idPropietario=0) && ++indice<CPROPIETARIO);
 }
 
+char existenPropietarioCargado(EPropietario lista[]){
+    int indice=0;
+
+    while((lista[indice].idPropietario==0) && ++indice<CPROPIETARIO);
+
+    if(indice<CPROPIETARIO){
+        return 1;
+    }
+
+    return 0;
+}
+
 int obtenerPropietarioLibre(EPropietario lista[]){
     int indice=0;
 

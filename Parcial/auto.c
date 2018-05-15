@@ -7,7 +7,19 @@
 void inisializarAuto(EAuto lista[]){
     int indice=0;
 
-    while(!(strcpy(lista[indice].patente, "0")) && ++indice<CAUTO);
+    while(strcpy(lista[indice].patente, "0") && ++indice<CAUTO);
+}
+
+char existenAutoCargado(EAuto lista[]){
+    int indice=0;
+
+    while((strcmp(lista[indice].patente,"0")==0) && ++indice<CAUTO);
+
+    if(indice<CAUTO){
+        return 1;
+    }
+
+    return 0;
 }
 
 int obtenerAutoLibre(EAuto lista[]){

@@ -5,7 +5,6 @@
 #include "auto.h"
 #define TDATO 50
 
-void imprimirMenu(int);
 void imprimirOpcionMenu(int);
 void imprimirError(int);
 void agregarPropietario(EPropietario []);

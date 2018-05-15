@@ -18,6 +18,14 @@ typedef struct {
 }EAuto;
 
 void inisializarAuto(EAuto []);
+
+/**
+ * Busca dentro del arreglo de autos si hay algun auto cargado.
+ * @param lista el array se pasa como parametro, del tipo arreglo de EAuto.
+ * @return devuelve 0 si no hay personas cargadas o 1 si hay personas cargadas.
+ */
+char existenAutoCargado(EAuto []);
+
 int obtenerAutoLibre(EAuto []);
 int buscarAuto(EAuto [], char *);
 

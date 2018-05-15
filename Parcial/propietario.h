@@ -17,6 +17,14 @@ typedef struct {
 
 
 void inisializarPropietario(EPropietario []);
+
+/**
+ * Busca dentro del arreglo de propietarios si hay algun propietario cargado.
+ * @param lista el array se pasa como parametro, del tipo arreglo de EPropietario.
+ * @return devuelve 0 si no hay personas cargadas o 1 si hay personas cargadas.
+ */
+char existenPropietarioCargado(EPropietario []);
+
 int obtenerPropietarioLibre(EPropietario []);
 int buscarPropietario(EPropietario [], int);
 
