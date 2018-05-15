@@ -109,7 +109,7 @@ void agregarPropietario(EPropietario lista[]){
         }else{
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese ID Propietario: ");
-            if(leerValidarDato(idPropietario,3)){
+            if(leerValidarDato(idPropietario,5)){
                 int auxIdPropietario=atoi(idPropietario);
                 if(auxIdPropietario>0){
                     if(buscarPropietario(lista,auxIdPropietario)==-1){
@@ -135,7 +135,7 @@ void agregarPropietario(EPropietario lista[]){
         }else{
             nya=malloc(sizeof(char) * TDATO);
             printf("Ingrese nombre y apellido: ");
-            if(leerValidarDato(nya,1)){
+            if(leerValidarDato(nya,2)){
                 strcpy(lista[indice].nya,formatearNombre(nya));
             }else{
                 free(nya);
@@ -148,7 +148,7 @@ void agregarPropietario(EPropietario lista[]){
         }else{
             direccion=malloc(sizeof(char) * TDATO);
             printf("Ingrese direccion: ");
-            if(leerValidarDato(direccion,2)){
+            if(leerValidarDato(direccion,4)){
                 strcpy(lista[indice].direccion,direccion);
             }else{
                 free(direccion);
@@ -161,7 +161,7 @@ void agregarPropietario(EPropietario lista[]){
         }else{
             tarjeta=malloc(sizeof(char) * TDATO);
             printf("Ingrese tarjeta: ");
-            if(leerValidarDato(tarjeta,3)){
+            if(leerValidarDato(tarjeta,5)){
                 lista[indice].tarjeta=atoi(tarjeta);
             }else{
                 free(tarjeta);
@@ -196,7 +196,7 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
         }else{
             patente=malloc(sizeof(char) * TDATO);
             printf("Ingrese patente: ");
-            if(leerValidarDato(patente,2)){
+            if(leerValidarDato(patente,3)){
                 if(strcmp(patente,"0")){
                     if(buscarAuto(lista,patente)==-1){
                         strcpy(lista[indice].patente,patente);
@@ -213,7 +213,7 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
             }else{
                 free(patente);
                 patente=NULL;
-                imprimirError(2);
+                imprimirError(12);
             }
         }
         if(marca){
@@ -244,7 +244,7 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
         }else{
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese ID Propietario: ");
-            if(leerValidarDato(idPropietario,3)){
+            if(leerValidarDato(idPropietario,5)){
                 int auxIdPropietario=atoi(idPropietario);
                 if(auxIdPropietario>0){
                     if(buscarPropietario(listaPropietario,auxIdPropietario)!=-1){
@@ -276,34 +276,68 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
 
 char *leerValidarDato(char *dato,char tipo){
 
-    fflush(stdin);
-
+    char contPunto=0;
+    char numero=0;
+    char letra=0;
     char *aux;
 
-    if(aux=fgets(dato, TDATO, stdin)){
+    fflush(stdin);
+
+    aux=fgets(dato, TDATO, stdin);
+
+    if(*aux!='\n'){
         do{
 
             switch(tipo){
 
             case 1:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux=='\n')){
                     dato=NULL;
-
                 }
                 break;
             case 2:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux >= '0' && *aux <= '9' || *aux==' ' || *aux=='\n')){
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
             case 3:
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux >= '0' && *aux <= '9' || *aux=='\n')){
+                    dato=NULL;
+                }else{
+                    if((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z')){
+                        letra=1;
+                    }else{
+                        if(*aux!='\n'){
+                            numero=1;
+                        }
+                    }
+                }
+                break;
+            case 4:
+                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux >= '0' && *aux <= '9' || *aux==' ' || *aux=='\n')){
+                    dato=NULL;
+                }else{
+                    if((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z')){
+                        letra=1;
+                    }else{
+                        if(*aux!=' ' && *aux!='\n'){
+                            numero=1;
+                        }
+                    }
+                }
+                break;
+            case 5:
                 if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
                     dato=NULL;
                 }
                 break;
-            case 4:
-                if (!(*aux >= '0' && *aux <= '9' || *aux!='.' || *aux=='\n')){
+            case 6:
+                if (!(*aux >= '0' && *aux <= '9' || *aux=='.' || *aux=='\n')){
                     dato=NULL;
+                }else{
+                    if(*aux=='.'){
+                        contPunto++;
+                    }
                 }
                 break;
             }
@@ -311,6 +345,14 @@ char *leerValidarDato(char *dato,char tipo){
                 break;
             }
         }while(*++aux!='\0');
+        if(dato){
+            if( ((tipo==3) || (tipo==4)) && !(letra && numero)){
+                dato=NULL;
+            }
+            if((tipo==6) && !(contPunto<=1)){
+                dato=NULL;
+            }
+        }
     }else{
         dato=NULL;
     }

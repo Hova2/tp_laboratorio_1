@@ -11,6 +11,16 @@ void agregarPropietario(EPropietario []);
 void agregarAuto(EAuto [],EPropietario []);
 void modificarPropietario(EPropietario []);
 void bajaPropietario(EPropietario []);
+
+/*
+1 - String
+2 - StringConEspacio
+3 - AlfaNumerico
+4 - AlfaNumericoConEspacio
+5 - NumeroEntero
+6 - NumeroConComa
+*/
+
 char *leerValidarDato(char *,char);
 char *formatearNombre(char *);
 int devolverHorasEstadia();
