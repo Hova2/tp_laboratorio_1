@@ -5,6 +5,70 @@
 #include "propietario.h"
 #include "auto.h"
 
+void imprimirMenu(int opcionMenu){
+
+        int opcion=0;
+
+        system("cls");
+        fflush(stdin);
+
+        switch(opcionMenu){
+            case 1:
+
+        scanf("%d",&opcion);
+
+        switch(opcion){
+            case 1:
+                agregarPropietario(propietarios);
+                break;
+            case 2:
+                modificarPropietario(propietarios);
+                break;
+            case 3:
+                bajaPropietario(propietarios);
+                break;
+            case 4:
+                agregarAuto(autos,propietarios);
+                break;
+            case 5:
+                bajaAuto(autos,propietarios);
+                system("pause");
+                break;
+            case 6:
+                seguir = 'n';
+                break;
+        }
+        }
+
+
+}
+
+void imprimirOpcionMenu(int opcion){
+
+    switch(opcion){
+        case 1:
+            printf("1- Agregar propietario\n");
+            break;
+        case 2:
+            printf("2- Modificar propietario\n");
+            break;
+        case 3:
+            printf("3- Baja propietario\n");
+            break;
+        case 4:
+            printf("4- Agregar auto\n");
+            break;
+        case 5:
+            printf("5- Egreso auto\n");
+            break;
+        case 6:
+            printf("6- Salir\n");
+            break;
+    }
+
+    return;
+}
+
 
 void imprimirError(int codigo){
      switch(codigo){
