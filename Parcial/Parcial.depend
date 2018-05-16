@@ -6,7 +6,7 @@
 	"funciones.h"
 	"auto.h"
 
-1526356876 d:\juani\git\tp_laboratorio_1\parcial\funciones.h
+1526443964 d:\juani\git\tp_laboratorio_1\parcial\funciones.h
 	"propietario.h"
 	"auto.h"
 
@@ -16,8 +16,10 @@
 1526358366 d:\juani\git\tp_laboratorio_1\parcial\auto.h
 	"funciones.h"
 
-1526357978 source:d:\juani\git\tp_laboratorio_1\parcial\funciones.c
+1526444060 source:d:\juani\git\tp_laboratorio_1\parcial\funciones.c
 	<stdio.h>
+	<ctype.h>
+	<time.h>
 	<stdlib.h>
 	<string.h>
 	"funciones.h"
@@ -30,7 +32,7 @@
 	"funciones.h"
 	"propietario.h"
 
-1526359424 source:d:\juani\git\tp_laboratorio_1\parcial\main.c
+1526361321 source:d:\juani\git\tp_laboratorio_1\parcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"

@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include "funciones.h"
@@ -104,7 +106,7 @@ void agregarPropietario(EPropietario lista[]){
         system("cls");
         fflush(stdin);
         printf("Cargar persona:\n");
-          if(idPropietario){
+        if(idPropietario){
             printf("ID Propietario: %s\n",idPropietario);
         }else{
             idPropietario=malloc(sizeof(char) * TDATO);
@@ -174,6 +176,7 @@ void agregarPropietario(EPropietario lista[]){
         free(nya);
         free(direccion);
         free(tarjeta);
+        system("pause");
     }else{
         imprimirError(6);
     }
@@ -198,6 +201,7 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
             printf("Ingrese patente: ");
             if(leerValidarDato(patente,3)){
                 if(strcmp(patente,"0")){
+                    patente=formatearPatente(patente);
                     if(buscarAuto(lista,patente)==-1){
                         strcpy(lista[indice].patente,patente);
                     }else{
@@ -220,24 +224,32 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
             printf("Marca: %s\n",marca);
         }else{
             marca=malloc(sizeof(char) * TDATO);
-            printf("Ingrese marca 1-ALPHA ROMERO, 2-FERRARI, 3-AUDI, 4-OTRO");
+            printf("Ingrese marca 1-ALPHA ROMERO, 2-FERRARI, 3-AUDI, 4-OTRO: ");
             int opcion;
             scanf("%d",&opcion);
             switch(opcion){
                 case 1:
-                       strcpy(marca,MARCA1);
-                       break;
+                        strcpy(marca,MARCA1);
+                        break;
                 case 2:
-                       strcpy(marca,MARCA2);
-                       break;
+                        strcpy(marca,MARCA2);
+                        break;
                 case 3:
-                       strcpy(marca,MARCA3);
-                       break;
+                        strcpy(marca,MARCA3);
+                        break;
                 case 4:
-                       strcpy(marca,MARCA4);
-                       break;
+                        strcpy(marca,MARCA4);
+                        break;
+                default:
+                        marca=NULL;
+                        break;
+
             }
-            strcpy(lista[indice].marca,marca);
+            if(marca){
+                strcpy(lista[indice].marca,marca);
+            }else{
+                imprimirError(14);
+            }
         }
         if(idPropietario){
             printf("ID Propietario: %s\n",idPropietario);
@@ -249,11 +261,11 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
                 if(auxIdPropietario>0){
                     if(buscarPropietario(listaPropietario,auxIdPropietario)!=-1){
                         lista[indice].idPropietario=auxIdPropietario;
-                    }else{
-                        free(idPropietario);
-                        idPropietario=NULL;
-                        imprimirError(14);
-                    }
+                }else{
+                    free(idPropietario);
+                    idPropietario=NULL;
+                    imprimirError(7);
+                }
                 }else{
                     free(idPropietario);
                     idPropietario=NULL;
@@ -269,6 +281,7 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
         free(patente);
         free(marca);
         free(idPropietario);
+        system("pause");
     }else{
         imprimirError(13);
     }
@@ -291,17 +304,17 @@ char *leerValidarDato(char *dato,char tipo){
             switch(tipo){
 
             case 1:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux=='\n')){
+                if (!((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z') || (*aux=='\n'))){
                     dato=NULL;
                 }
                 break;
             case 2:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux==' ' || *aux=='\n')){
+                if (!((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z') || (*aux==' ') || (*aux=='\n'))){
                     dato=NULL;
                 }
                 break;
             case 3:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux >= '0' && *aux <= '9' || *aux=='\n')){
+                if (!((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z') || (*aux >= '0' && *aux <= '9') || (*aux=='\n'))){
                     dato=NULL;
                 }else{
                     if((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z')){
@@ -314,7 +327,7 @@ char *leerValidarDato(char *dato,char tipo){
                 }
                 break;
             case 4:
-                if (!(*aux >= 'A' && *aux <= 'Z' || *aux >= 'a' && *aux <= 'z' || *aux >= '0' && *aux <= '9' || *aux==' ' || *aux=='\n')){
+                if (!((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z') || (*aux >= '0' && *aux <= '9') || (*aux==' ') || (*aux=='\n'))){
                     dato=NULL;
                 }else{
                     if((*aux >= 'A' && *aux <= 'Z') || (*aux >= 'a' && *aux <= 'z')){
@@ -327,12 +340,12 @@ char *leerValidarDato(char *dato,char tipo){
                 }
                 break;
             case 5:
-                if (!(*aux >= '0' && *aux <= '9' || *aux=='\n')){
+                if (!((*aux >= '0' && *aux <= '9') || (*aux=='\n'))){
                     dato=NULL;
                 }
                 break;
             case 6:
-                if (!(*aux >= '0' && *aux <= '9' || *aux=='.' || *aux=='\n')){
+                if (!((*aux >= '0' && *aux <= '9') || (*aux=='.') || (*aux=='\n'))){
                     dato=NULL;
                 }else{
                     if(*aux=='.'){
@@ -376,6 +389,15 @@ char *formatearNombre(char *dato){
     return dato;
 }
 
+char *formatearPatente(char *dato){
+    char *aux=malloc(sizeof(char) * TDATO);
+    aux=dato;
+    do{
+        *aux=toupper(*aux);
+    }while(*(++aux)!='\n');
+    return dato;
+}
+
 void modificarPropietario(EPropietario lista[]){
     char *idPropietario=NULL;
     char *tarjeta=NULL;
@@ -385,7 +407,7 @@ void modificarPropietario(EPropietario lista[]){
         if(!idPropietario){
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese el ID a modificar: ");
-            if(!leerValidarDato(idPropietario,3)){
+            if(!leerValidarDato(idPropietario,5)){
                 free(idPropietario);
                 idPropietario=NULL;
                 imprimirError(2);
@@ -396,7 +418,7 @@ void modificarPropietario(EPropietario lista[]){
     if((indice=buscarPropietario(lista,atoi(idPropietario)))!=-1){
         tarjeta=malloc(sizeof(char) * TDATO);
         printf("Ingrese tarjeta: ");
-        if(leerValidarDato(tarjeta,3)){
+        if(leerValidarDato(tarjeta,5)){
             lista[indice].tarjeta=atoi(tarjeta);
         }else{
             free(tarjeta);
@@ -416,7 +438,7 @@ void bajaPropietario(EPropietario lista[]){
         if(!idPropietario){
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese el ID a borar: ");
-            if(!leerValidarDato(idPropietario,3)){
+            if(!leerValidarDato(idPropietario,5)){
                 free(idPropietario);
                 idPropietario=NULL;
                 imprimirError(2);
@@ -441,14 +463,14 @@ void bajaAuto(EAuto listaAuto[], EPropietario listaPropietario[]){
         if(!patente){
             patente=malloc(sizeof(char) * TDATO);
             printf("Ingrese la patente del auto: ");
-            if(!leerValidarDato(patente,2)){
+            if(!leerValidarDato(patente,3)){
                 free(patente);
                 patente=NULL;
                 imprimirError(12);
             }
         }
     }
-
+    patente=formatearPatente(patente);
     if((indice=buscarAuto(listaAuto,patente))!=-1){
         int indicePropietario=buscarPropietario(listaPropietario, listaAuto[indice].idPropietario);
         printf("El propietario es: %s\n",listaPropietario[indicePropietario].nya);
@@ -468,7 +490,7 @@ void bajaAuto(EAuto listaAuto[], EPropietario listaPropietario[]){
         }
 
         strcpy(listaAuto[indice].patente,"0");
-
+        system("pause");
 
     }else{
            imprimirError(7);

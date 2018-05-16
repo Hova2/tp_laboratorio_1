@@ -20,9 +20,9 @@ void bajaPropietario(EPropietario []);
 5 - NumeroEntero
 6 - NumeroConComa
 */
-
 char *leerValidarDato(char *,char);
 char *formatearNombre(char *);
+char *formatearPatente(char *);
 int devolverHorasEstadia();
 
 #endif // FUNCIONES_H_INCLUDED
