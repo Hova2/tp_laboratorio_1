@@ -3,8 +3,7 @@
 
 #include "funciones.h"
 #define CPROPIETARIO 20
-#define TDATO 50
-
+#define TDATO 100
 
 typedef struct {
 

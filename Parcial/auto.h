@@ -3,16 +3,16 @@
 
 #include "funciones.h"
 #define CAUTO 20
+#define TDATO 100
 #define MARCA1 "ALPHA_ROMERO"
 #define MARCA2 "FERRARI"
 #define MARCA3 "AUDI"
 #define MARCA4 "OTRO"
-#define TDATO 50
 
 typedef struct {
 
     char patente[TDATO];
-    char marca[TDATO];
+    int marca;
     int idPropietario;
 
 }EAuto;

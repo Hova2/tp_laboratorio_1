@@ -89,6 +89,24 @@ void imprimirError(int codigo){
         case 14:
             printf("La opcion ingresada es invalida!!!!\n");
             break;
+        case 15:
+            printf("La patente tiene que comezar con 3 letras y seguir con 3 numeros!!!!\n");
+            break;
+        case 16:
+            printf("El nombre y apellido no puede tener mas de 50 letras!!!!\n");
+            break;
+        case 17:
+            printf("La direccion no puede tener mas de 75 letras!!!!\n");
+            break;
+        case 18:
+            printf("La tarjeta debe tener 20 numeros!!!!\n");
+            break;
+        case 19:
+            printf("La patente debe tener 6 caracteres!!!!\n");
+            break;
+        case 20:
+            printf("La marca ingresada es incorrecta!!!!\n");
+            break;
      }
      system("pause");
 }
@@ -112,23 +130,21 @@ void agregarPropietario(EPropietario lista[]){
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese ID Propietario: ");
             if(leerValidarDato(idPropietario,5)){
+                strtok(idPropietario, "\n");
                 int auxIdPropietario=atoi(idPropietario);
                 if(auxIdPropietario>0){
                     if(buscarPropietario(lista,auxIdPropietario)==-1){
                         lista[indice].idPropietario=auxIdPropietario;
                     }else{
-                        free(idPropietario);
-                        idPropietario=NULL;
+                        idPropietario=borrarPuntero(idPropietario);
                         imprimirError(5);
                     }
                 }else{
-                    free(idPropietario);
-                    idPropietario=NULL;
+                    idPropietario=borrarPuntero(idPropietario);
                     imprimirError(8);
                 }
             }else{
-                free(idPropietario);
-                idPropietario=NULL;
+                idPropietario=borrarPuntero(idPropietario);
                 imprimirError(2);
             }
         }
@@ -138,10 +154,17 @@ void agregarPropietario(EPropietario lista[]){
             nya=malloc(sizeof(char) * TDATO);
             printf("Ingrese nombre y apellido: ");
             if(leerValidarDato(nya,2)){
-                strcpy(lista[indice].nya,formatearNombre(nya));
+                strtok(nya, "\n");
+                int tam=strlen(nya);
+                if(tam<=TNYA){
+                    strcpy(lista[indice].nya,formatearNombre(nya,tam));
+                }else{
+                    nya=borrarPuntero(nya);
+                    imprimirError(16);
+                }
+
             }else{
-                free(nya);
-                nya=NULL;
+                nya=borrarPuntero(nya);
                 imprimirError(1);
             }
         }
@@ -151,10 +174,15 @@ void agregarPropietario(EPropietario lista[]){
             direccion=malloc(sizeof(char) * TDATO);
             printf("Ingrese direccion: ");
             if(leerValidarDato(direccion,4)){
-                strcpy(lista[indice].direccion,direccion);
+                strtok(direccion, "\n");
+                if(strlen(direccion)<=TDIRE){
+                    strcpy(lista[indice].direccion,direccion);
+                }else{
+                    direccion=borrarPuntero(direccion);
+                    imprimirError(17);
+                }
             }else{
-                free(direccion);
-                direccion=NULL;
+                direccion=borrarPuntero(direccion);
                 imprimirError(3);
             }
         }
@@ -164,19 +192,24 @@ void agregarPropietario(EPropietario lista[]){
             tarjeta=malloc(sizeof(char) * TDATO);
             printf("Ingrese tarjeta: ");
             if(leerValidarDato(tarjeta,5)){
-                lista[indice].tarjeta=atoi(tarjeta);
+                strtok(tarjeta, "\n");
+                if(strlen(tarjeta)==TTARJETA){
+                    lista[indice].tarjeta=atoi(tarjeta);
+                }else{
+                    tarjeta=borrarPuntero(tarjeta);
+                    imprimirError(18);
+                }
             }else{
-                free(tarjeta);
-                tarjeta=NULL;
+                tarjeta=borrarPuntero(tarjeta);
                 imprimirError(4);
             }
         }
+        system("pause");
     }
         free(idPropietario);
         free(nya);
         free(direccion);
         free(tarjeta);
-        system("pause");
     }else{
         imprimirError(6);
     }
@@ -200,56 +233,67 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
             patente=malloc(sizeof(char) * TDATO);
             printf("Ingrese patente: ");
             if(leerValidarDato(patente,3)){
-                if(strcmp(patente,"0")){
-                    patente=formatearPatente(patente);
-                    if(buscarAuto(lista,patente)==-1){
-                        strcpy(lista[indice].patente,patente);
+                strtok(patente, "\n");
+                if(strlen(patente)==TPATENTE){
+                    if(strcmp(patente,"0")){
+                        patente=formatearPatente(patente);
+                        if(validarPatente(patente)){
+                            if(buscarAuto(lista,patente)==-1){
+                                strcpy(lista[indice].patente,patente);
+                            }else{
+                                patente=borrarPuntero(patente);
+                                imprimirError(10);
+                            }
+                        }else{
+                            patente=borrarPuntero(patente);
+                            imprimirError(15);
+                        }
                     }else{
-                        free(patente);
-                        patente=NULL;
-                        imprimirError(10);
+                        patente=borrarPuntero(patente);
+                        imprimirError(11);
                     }
                 }else{
-                    free(patente);
-                    patente=NULL;
-                    imprimirError(11);
+                    patente=borrarPuntero(patente);
+                    imprimirError(19);
                 }
             }else{
-                free(patente);
-                patente=NULL;
+                patente=borrarPuntero(patente);
                 imprimirError(12);
             }
         }
         if(marca){
-            printf("Marca: %s\n",marca);
+            int auxMarca=atoi(marca);
+            switch(auxMarca){
+                case 1:
+                        printf("Marca: %s\n",MARCA1);
+                        break;
+                case 2:
+                        printf("Marca: %s\n",MARCA2);
+                        break;
+                case 3:
+                        printf("Marca: %s\n",MARCA3);
+                        break;
+                case 4:
+                        printf("Marca: %s\n",MARCA4);
+                        break;
+            }
         }else{
             marca=malloc(sizeof(char) * TDATO);
             printf("Ingrese marca 1-ALPHA ROMERO, 2-FERRARI, 3-AUDI, 4-OTRO: ");
-            int opcion;
-            scanf("%d",&opcion);
-            switch(opcion){
-                case 1:
-                        strcpy(marca,MARCA1);
-                        break;
-                case 2:
-                        strcpy(marca,MARCA2);
-                        break;
-                case 3:
-                        strcpy(marca,MARCA3);
-                        break;
-                case 4:
-                        strcpy(marca,MARCA4);
-                        break;
-                default:
-                        marca=NULL;
-                        break;
-
-            }
-            if(marca){
-                strcpy(lista[indice].marca,marca);
+            if(leerValidarDato(marca,5)){
+                strtok(marca, "\n");
+                int auxMarca=atoi(marca);
+                if(auxMarca>0 && auxMarca<5){
+                    lista[indice].marca=auxMarca;
+                }else{
+                    marca=borrarPuntero(marca);
+                    imprimirError(14);
+                }
             }else{
-                imprimirError(14);
+                marca=borrarPuntero(marca);
+                imprimirError(20);
             }
+
         }
         if(idPropietario){
             printf("ID Propietario: %s\n",idPropietario);
@@ -257,34 +301,37 @@ void agregarAuto(EAuto lista[],EPropietario listaPropietario[]){
             idPropietario=malloc(sizeof(char) * TDATO);
             printf("Ingrese ID Propietario: ");
             if(leerValidarDato(idPropietario,5)){
+                strtok(marca, "\n");
                 int auxIdPropietario=atoi(idPropietario);
                 if(auxIdPropietario>0){
                     if(buscarPropietario(listaPropietario,auxIdPropietario)!=-1){
                         lista[indice].idPropietario=auxIdPropietario;
                 }else{
-                    free(idPropietario);
-                    idPropietario=NULL;
+                    idPropietario=borrarPuntero(idPropietario);
                     imprimirError(7);
                 }
                 }else{
-                    free(idPropietario);
-                    idPropietario=NULL;
+                    idPropietario=borrarPuntero(idPropietario);
                     imprimirError(8);
                 }
             }else{
-                free(idPropietario);
-                idPropietario=NULL;
+                idPropietario=borrarPuntero(idPropietario);
                 imprimirError(2);
             }
         }
+        system("pause");
     }
         free(patente);
         free(marca);
         free(idPropietario);
-        system("pause");
     }else{
         imprimirError(13);
     }
+}
+
+char* borrarPuntero(char *dato){
+     free(dato);
+     return NULL;
 }
 
 char *leerValidarDato(char *dato,char tipo){
@@ -373,13 +420,17 @@ char *leerValidarDato(char *dato,char tipo){
     return dato;
 }
 
-char *formatearNombre(char *dato){
+char *formatearNombre(char *dato, int tam){
     char *aux=malloc(sizeof(char) * TDATO);
+    int cont=1;
     aux=dato;
     *aux=toupper(*aux);
-    while(*(++aux)!='\n'){
+    while(cont<tam){
+        ++aux;
+        cont++;
         if(*aux==' '){
-            aux++;
+            ++aux;
+            cont++;
             *aux=toupper(*aux);
         }else{
             *aux=tolower(*aux);
@@ -389,13 +440,39 @@ char *formatearNombre(char *dato){
     return dato;
 }
 
+
+
 char *formatearPatente(char *dato){
     char *aux=malloc(sizeof(char) * TDATO);
+    int cont=0;
     aux=dato;
     do{
         *aux=toupper(*aux);
-    }while(*(++aux)!='\n');
+        cont++;
+        aux++;
+    }while(cont<TPATENTE);
     return dato;
+}
+
+char validarPatente(char *dato){
+    char *aux=malloc(sizeof(char) * TDATO);
+    int cont=0;
+    aux=dato;
+    do{
+        if(!(cont<3 && isalpha(*aux))){
+            if(!(cont>=3)){
+                return 0;
+            }else{
+                if(!isdigit(*aux)){
+                    return 0;
+                }
+            }
+        }
+        cont++;
+        aux++;
+    }while(cont<TPATENTE);
+
+    return 1;
 }
 
 void modificarPropietario(EPropietario lista[]){
@@ -476,7 +553,7 @@ void bajaAuto(EAuto listaAuto[], EPropietario listaPropietario[]){
         printf("El propietario es: %s\n",listaPropietario[indicePropietario].nya);
         printf("La patente es: %s\n",listaAuto[indice].patente);
         printf("La marca es: %s\n",listaAuto[indice].marca);
-        if(!(strcmp(listaAuto[indice].marca,MARCA1))){
+        /*if(!(strcmp(listaAuto[indice].marca,MARCA1))){
             printf("El valor de la estadia es: %d\n",150 * devolverHorasEstadia());
         }
         if(!(strcmp(listaAuto[indice].marca,MARCA2))){
@@ -487,7 +564,7 @@ void bajaAuto(EAuto listaAuto[], EPropietario listaPropietario[]){
         }
         if(!(strcmp(listaAuto[indice].marca,MARCA4))){
             printf("El valor de la estadia es: %d\n",250 * devolverHorasEstadia());
-        }
+        }*/
 
         strcpy(listaAuto[indice].patente,"0");
         system("pause");

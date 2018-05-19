@@ -3,7 +3,11 @@
 
 #include "propietario.h"
 #include "auto.h"
-#define TDATO 50
+#define TDATO 100
+#define TNYA 50
+#define TDIRE 75
+#define TTARJETA 20
+#define TPATENTE 6
 
 void imprimirOpcionMenu(int);
 void imprimirError(int);
@@ -11,6 +15,7 @@ void agregarPropietario(EPropietario []);
 void agregarAuto(EAuto [],EPropietario []);
 void modificarPropietario(EPropietario []);
 void bajaPropietario(EPropietario []);
+char *borrarPuntero(char *);
 
 /*
 1 - String
@@ -21,8 +26,9 @@ void bajaPropietario(EPropietario []);
 6 - NumeroConComa
 */
 char *leerValidarDato(char *,char);
-char *formatearNombre(char *);
+char *formatearNombre(char *,int);
 char *formatearPatente(char *);
+char validarPatente(char *);
 int devolverHorasEstadia();
 
 #endif // FUNCIONES_H_INCLUDED
