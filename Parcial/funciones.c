@@ -11,34 +11,37 @@ void imprimirOpcionMenu(int opcion){
 
     switch(opcion){
         case 1:
-            printf("1- Agregar propietario\n");
+            printf("1 - Agregar propietario\n");
             break;
         case 2:
-            printf("2- Modificar propietario\n");
+            printf("2 - Modificar propietario\n");
             break;
         case 3:
-            printf("3- Baja propietario\n");
+            printf("3 - Baja propietario\n");
             break;
         case 4:
-            printf("4- Agregar auto\n");
+            printf("4 - Agregar auto\n");
             break;
         case 5:
-            printf("5- Egreso de auto\n");
+            printf("5 - Egreso de auto\n");
             break;
         case 6:
-            printf("6- Recaudacion total\n");
+            printf("6 - Recaudacion total\n");
             break;
         case 7:
-            printf("7- Recaudacion total por marca\n");
+            printf("7 - Recaudacion total por marca\n");
             break;
         case 8:
-            printf("8- Propietarios con autos AUDI estacionados\n");
+            printf("8 - Listado de autos de un propietario\n");
             break;
         case 9:
-            printf("9- Autos estacionados\n");
+            printf("9 - Propietarios con autos AUDI estacionados\n");
             break;
         case 10:
-            printf("10- Salir\n");
+            printf("10- Listado de autos estacionados\n");
+            break;
+        case 11:
+            printf("11- Salir\n");
             break;
     }
 
@@ -526,7 +529,7 @@ void modificarPropietario(EPropietario lista[]){
     free(tarjeta);
 }
 
-void bajaPropietario(EPropietario lista[], EAuto listaAuto[]){
+void bajaPropietario(EPropietario lista[], EAuto listaAuto[], ERecaudaciones *recaudaciones){
     char *idPropietario=NULL;
     int indice;
     while(!idPropietario){
@@ -542,12 +545,13 @@ void bajaPropietario(EPropietario lista[], EAuto listaAuto[]){
                 if((indice=buscarPropietario(lista,auxIdPropietario))!=-1){
                     lista[indice].idPropietario=0;
                     printf("Baja exitosa!!!!\n");
-                    int total=bajaAutoAutomatica(listaAuto,auxIdPropietario);
+                    int total=bajaAutoAutomatica(listaAuto,auxIdPropietario,recaudaciones);
                     if(total){
                         printf("El total que el propietario debe abonar es: %d\n",total);
                     }else{
                         printf("El propietario no debe abonar nada, porque no tiene autos estacionados!!!!\n");
                     }
+                    (*recaudaciones).recTotal+=total;
                 }else{
                     idPropietario=borrarPuntero(idPropietario);
                     imprimirError(7);
@@ -563,9 +567,10 @@ void bajaPropietario(EPropietario lista[], EAuto listaAuto[]){
     }
     free(idPropietario);
     system("pause");
+    return;
 }
 
-void bajaAutoManual(EAuto listaAuto[], EPropietario listaPropietario[]){
+void bajaAutoManual(EAuto listaAuto[], EPropietario listaPropietario[],ERecaudaciones *recaudaciones){
     char *patente=NULL;
     int indice;
     while(!patente){
@@ -584,26 +589,33 @@ void bajaAutoManual(EAuto listaAuto[], EPropietario listaPropietario[]){
                             int indicePropietario=buscarPropietario(listaPropietario, listaAuto[indice].idPropietario);
                             printf("El propietario es: %s\n",listaPropietario[indicePropietario].nya);
                             printf("La patente es: %s\n",listaAuto[indice].patente);
-                             switch(listaAuto[indice].marca){
+                            int total;
+                            switch(listaAuto[indice].marca){
                                 case 1:
                                     printf("Marca: %s\n",MARCA1);
-                                    printf("El valor de la estadia es: %d\n",(devolverHorasEstadia() * 150));
+                                    total=(devolverHorasEstadia() * 150);
+                                    (*recaudaciones).recMarca1+=total;
                                     break;
                                 case 2:
                                     printf("Marca: %s\n",MARCA2);
-                                    printf("El valor de la estadia es: %d\n",(devolverHorasEstadia() * 175));
+                                    total=(devolverHorasEstadia() * 175);
+                                    (*recaudaciones).recMarca2+=total;
                                     break;
                                 case 3:
                                     printf("Marca: %s\n",MARCA3);
-                                    printf("El valor de la estadia es: %d\n",(devolverHorasEstadia() * 200));
+                                    total=(devolverHorasEstadia() * 200);
+                                    (*recaudaciones).recMarca3+=total;
                                     break;
                                 case 4:
                                     printf("Marca: %s\n",MARCA4);
-                                    printf("El valor de la estadia es: %d\n",(devolverHorasEstadia() * 250));
+                                    total=(devolverHorasEstadia() * 250);
+                                    (*recaudaciones).recMarca4+=total;
                                     break;
                             }
+                            printf("El valor de la estadia es: %d\n",total);
                             strcpy(listaAuto[indice].patente,"0");
                             printf("Baja exitosa!!!!\n");
+                            (*recaudaciones).recTotal+=total;
                         }else{
                             patente=borrarPuntero(patente);
                             imprimirError(21);
@@ -627,6 +639,163 @@ void bajaAutoManual(EAuto listaAuto[], EPropietario listaPropietario[]){
     }
     free(patente);
     system("pause");
+    return;
+}
+
+void recaudacionTotal(int total){
+    system("cls");
+    if(total){
+        printf("La recaudacion total es: %d\n",total);
+    }else{
+        printf("Actualmente no hay recaudacion\n");
+    }
+    system("pause");
+}
+
+void recaudacionTotalPorMarca(int marca1,int marca2,int marca3,int marca4){
+    system("cls");
+    if(marca1){
+        printf("La recaudacion de los autos de la marca %s es: %d\n",MARCA1,marca1);
+    }else{
+        printf("Nunca se estacionaron autos de la marca %s\n",MARCA1);
+    }
+    if(marca2){
+        printf("La recaudacion de los autos de la marca %s es: %d\n",MARCA2,marca2);
+    }else{
+        printf("Nunca se estacionaron autos de la marca %s\n",MARCA2);
+    }
+    if(marca3){
+        printf("La recaudacion de los autos de la marca %s es: %d\n",MARCA3,marca3);
+    }else{
+        printf("Nunca se estacionaron autos de la marca %s\n",MARCA3);
+    }
+    if(marca4){
+        printf("La recaudacion de los autos que pertenecen a otras marcas es: %d\n",marca4);
+    }else{
+        printf("Nunca se estacionaron autos de otras marcas\n");
+    }
+    system("pause");
+}
+
+void inisializarRecaudaciones(ERecaudaciones *recaudaciones){
+    (*recaudaciones).recTotal=0;
+    (*recaudaciones).recMarca1=0;
+    (*recaudaciones).recMarca2=0;
+    (*recaudaciones).recMarca3=0;
+    (*recaudaciones).recMarca4=0;
+}
+
+void imprimirPropietario(EPropietario listaPropietario[],EAuto listaAuto[]){
+    char *idPropietario=NULL;
+    int indice;
+    while(!idPropietario){
+        fflush(stdin);
+        system("cls");
+        printf("Listar autos de un propietario\n");
+        idPropietario=malloc(sizeof(char) * TDATO);
+        printf("Ingrese ID Propietario: ");
+        if(leerValidarDato(idPropietario,5)){
+            strtok(idPropietario, "\n");
+            int auxIdPropietario=atoi(idPropietario);
+            if(auxIdPropietario>0){
+                if((indice=buscarPropietario(listaPropietario,auxIdPropietario))!=-1){
+                    printf("El nombre del propietario es: %s\n\n",listaPropietario[indice].nya);
+                    imprimirAutosDePropietario(listaAuto,auxIdPropietario);
+                }else{
+                    idPropietario=borrarPuntero(idPropietario);
+                    imprimirError(7);
+                }
+            }else{
+                idPropietario=borrarPuntero(idPropietario);
+                imprimirError(8);
+            }
+        }else{
+            idPropietario=borrarPuntero(idPropietario);
+            imprimirError(2);
+        }
+    }
+    free(idPropietario);
+    system("pause");
+    return;
+}
+
+void imprimirAutosAudi(EPropietario listaPropietario[],EAuto listaAuto[]){
+    system("cls");
+    printf("Lista de propietarios con autos de la marca %s:\n\n",MARCA3);
+
+    if(exiteAutoAudi(listaAuto)){
+        int indiceAuto=0;
+        printf("ID - Nombre y apellido - Direccion - Tarjeta\n\n");
+        do{
+            if(listaAuto[indiceAuto].marca==3 && (strcmp(listaAuto[indiceAuto].patente,"0")!=0)){
+                int indicePropietario=0;
+                do{
+                    if(listaPropietario[indicePropietario].idPropietario==listaAuto[indiceAuto].idPropietario && listaPropietario[indicePropietario].idPropietario!=0){
+                        printf("%d  - ",listaPropietario[indicePropietario].idPropietario);
+                        printf("%s  - ",listaPropietario[indicePropietario].nya);
+                        printf("%s  - ",listaPropietario[indicePropietario].direccion);
+                        printf("%s\n",listaPropietario[indicePropietario].tarjeta);
+                    }
+                }while(++indicePropietario<CPROPIETARIO);
+            }
+        }while(++indiceAuto<CAUTO);
+    }else{
+        printf("No existen propietarios con autos %s estacionados!!!\n",MARCA3);
+    }
+    system("pause");
+}
+
+void imprimirAutosOrdenados(EPropietario listaPropietario[],EAuto listaAuto[]){
+    system("cls");
+    printf("Listado de autos estacionados:\n\n");
+    ordenarAuto(listaAuto);
+    int indice=0;
+    do{
+        if(listaPropietario[indice].idPropietario!=0){
+           if(exitePropietarioConAuto(listaAuto,listaPropietario[indice].idPropietario)){
+                printf("ID: %d  - ",listaPropietario[indice].idPropietario);
+                printf("Nombre y Apellido: %s  - ",listaPropietario[indice].nya);
+                printf("Direccion: %s  - ",listaPropietario[indice].direccion);
+                printf("Tarjeta: %s\n\n",listaPropietario[indice].tarjeta);
+                imprimirAutosDePropietario(listaAuto,listaPropietario[indice].idPropietario);
+                printf("\n\n");
+           }
+        }
+    }while(++indice<CPROPIETARIO);
+    system("pause");
+    return;
+
+}
+
+void imprimirAutosDePropietario(EAuto listaAuto[],int idPropietario){
+
+    if(exitePropietarioConAuto(listaAuto,idPropietario)){
+        int indice=0;
+        printf("Patente - Marca\n\n");
+        do{
+            if(listaAuto[indice].idPropietario==idPropietario && (strcmp(listaAuto[indice].patente,"0")!=0)){
+                printf("%s  - ",listaAuto[indice].patente);
+                switch(listaAuto[indice].marca){
+                    case 1:
+                        printf("%s\n",MARCA1);
+                        break;
+                    case 2:
+                        printf("%s\n",MARCA2);
+                        break;
+                    case 3:
+                        printf("%s\n",MARCA3);
+                        break;
+                    case 4:
+                        printf("%s\n",MARCA4);
+                        break;
+                }
+            }
+        }
+        while(++indice<CAUTO);
+    }else{
+        printf("El propietario no tiene autos estacionados!!!\n");
+    }
+
 }
 
 int devolverHorasEstadia(){
@@ -638,24 +807,33 @@ int devolverHorasEstadia(){
 
 }
 
-int bajaAutoAutomatica(EAuto lista[],int idPropietario){
+int bajaAutoAutomatica(EAuto lista[],int idPropietario,ERecaudaciones *recaudaciones){
     int indice=0;
     int acum=0;
 
     do{
         if(lista[indice].idPropietario==idPropietario && (strcmp(lista[indice].patente,"0")!=0)){
+            int subToral;
             switch(lista[indice].marca){
                 case 1:
-                        acum+=(devolverHorasEstadia() * 150);
+                        subToral=(devolverHorasEstadia() * 150);
+                        (*recaudaciones).recMarca1+=subToral;
+                        acum+=subToral;
                         break;
                 case 2:
-                        acum+=(devolverHorasEstadia() * 175);
+                        subToral=(devolverHorasEstadia() * 175);
+                        (*recaudaciones).recMarca2+=subToral;
+                        acum+=subToral;
                         break;
                 case 3:
-                        acum+=(devolverHorasEstadia() * 200);
+                        subToral=(devolverHorasEstadia() * 200);
+                        (*recaudaciones).recMarca3+=subToral;
+                        acum+=subToral;
                         break;
                 case 4:
-                        acum+=(devolverHorasEstadia() * 250);
+                        subToral=(devolverHorasEstadia() * 250);
+                        (*recaudaciones).recMarca4+=subToral;
+                        acum+=subToral;
                         break;
             }
             strcpy(lista[indice].patente, "0");

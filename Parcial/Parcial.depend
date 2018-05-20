@@ -1,22 +1,22 @@
 # depslib dependency file v1.0
-1526835371 source:d:\juani\git\tp_laboratorio_1\parcial\auto.c
+1526853030 source:d:\juani\git\tp_laboratorio_1\parcial\auto.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"funciones.h"
 	"auto.h"
 
-1526832346 d:\juani\git\tp_laboratorio_1\parcial\funciones.h
+1526851672 d:\juani\git\tp_laboratorio_1\parcial\funciones.h
 	"propietario.h"
 	"auto.h"
 
 1526834695 d:\juani\git\tp_laboratorio_1\parcial\propietario.h
 	"funciones.h"
 
-1526748707 d:\juani\git\tp_laboratorio_1\parcial\auto.h
+1526850655 d:\juani\git\tp_laboratorio_1\parcial\auto.h
 	"funciones.h"
 
-1526837193 source:d:\juani\git\tp_laboratorio_1\parcial\funciones.c
+1526853403 source:d:\juani\git\tp_laboratorio_1\parcial\funciones.c
 	<stdio.h>
 	<ctype.h>
 	<time.h>
@@ -32,9 +32,10 @@
 	"funciones.h"
 	"propietario.h"
 
-1526836950 source:d:\juani\git\tp_laboratorio_1\parcial\main.c
+1526854669 source:d:\juani\git\tp_laboratorio_1\parcial\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"funciones.h"
 	"propietario.h"
 	"auto.h"

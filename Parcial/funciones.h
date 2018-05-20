@@ -9,13 +9,30 @@
 #define TTARJETA 20
 #define TPATENTE 6
 
+typedef struct {
+
+    int recTotal;
+    int recMarca1;
+    int recMarca2;
+    int recMarca3;
+    int recMarca4;
+
+}ERecaudaciones;
+
 void imprimirOpcionMenu(int);
 void imprimirError(int);
 void agregarPropietario(EPropietario []);
 void agregarAuto(EAuto [],EPropietario []);
 void modificarPropietario(EPropietario []);
-void bajaPropietario(EPropietario [],EAuto []);
-void bajaAutoManual(EAuto [],EPropietario []);
+void bajaPropietario(EPropietario [],EAuto [],ERecaudaciones *);
+void bajaAutoManual(EAuto [],EPropietario [],ERecaudaciones *);
+void recaudacionTotal(int);
+void recaudacionTotalPorMarca(int,int,int,int);
+void inisializarRecaudaciones(ERecaudaciones *);
+void imprimirPropietario(EPropietario[],EAuto[]);
+void imprimirAutosAudi(EPropietario[],EAuto[]);
+void imprimirAutosDePropietario(EAuto[],int);
+void imprimirAutosOrdenados(EPropietario[],EAuto[]);
 char *borrarPuntero(char *);
 
 /*
@@ -30,7 +47,7 @@ char *leerValidarDato(char *,char);
 char *formatearNombre(char *,int);
 char *formatearPatente(char *);
 char validarPatente(char *);
+int bajaAutoAutomatica(EAuto [],int,ERecaudaciones *);
 int devolverHorasEstadia();
-int bajaAutoAutomatica(EAuto [],int);
 
 #endif // FUNCIONES_H_INCLUDED
