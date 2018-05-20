@@ -25,7 +25,7 @@ char existenAutoCargado(EAuto lista[]){
 int obtenerAutoLibre(EAuto lista[]){
     int indice=0;
 
-    while(atoi(lista[indice].patente) && ++indice<CAUTO);
+    while(!(strcmp(lista[indice].patente,"0")==0) && ++indice<CAUTO);
 
     if(indice<CAUTO){
         return indice;

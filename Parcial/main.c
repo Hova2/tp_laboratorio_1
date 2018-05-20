@@ -63,7 +63,7 @@ void main(){
                         modificarPropietario(propietarios);
                         break;
                     case 3:
-                        bajaPropietario(propietarios);
+                        bajaPropietario(propietarios,autos);
                         break;
                     case 4:
                         agregarAuto(autos,propietarios);
@@ -96,13 +96,13 @@ void main(){
                         modificarPropietario(propietarios);
                         break;
                     case 3:
-                        bajaPropietario(propietarios);
+                        bajaPropietario(propietarios,autos);
                         break;
                     case 4:
                         agregarAuto(autos,propietarios);
                         break;
                     case 5:
-                        bajaAuto(autos,propietarios);
+                        bajaAutoManual(autos,propietarios);
                         break;
                     case 6:
                         break;

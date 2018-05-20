@@ -14,7 +14,8 @@ void imprimirError(int);
 void agregarPropietario(EPropietario []);
 void agregarAuto(EAuto [],EPropietario []);
 void modificarPropietario(EPropietario []);
-void bajaPropietario(EPropietario []);
+void bajaPropietario(EPropietario [],EAuto []);
+void bajaAutoManual(EAuto [],EPropietario []);
 char *borrarPuntero(char *);
 
 /*
@@ -30,5 +31,6 @@ char *formatearNombre(char *,int);
 char *formatearPatente(char *);
 char validarPatente(char *);
 int devolverHorasEstadia();
+int bajaAutoAutomatica(EAuto [],int);
 
 #endif // FUNCIONES_H_INCLUDED

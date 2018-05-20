@@ -10,7 +10,7 @@ typedef struct {
     int idPropietario;
     char nya[TDATO];
     char direccion[TDATO];
-    int tarjeta;
+    char tarjeta[TDATO];
 
 }EPropietario;
 
