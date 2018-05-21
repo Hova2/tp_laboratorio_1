@@ -27,19 +27,54 @@ typedef struct {
 
 }EAuto;
 
+/** @brief Inicializar auto.
+ * Inicializa en cero la patente del auto del arreglo de autos.
+ * @param lista Es el arreglo de autos, del tipo EAuto.
+ * @return No se devuelve nada.
+ */
 void inisializarAuto(EAuto []);
+
+/** @brief Ordenar auto.
+ * Ordena alfabeticamente por patente el arreglo de autos.
+ * @param listaAuto Es el arreglo de autos, del tipo EAuto.
+ * @return No se devuelve nada.
+ */
 void ordenarAuto(EAuto []);
 
-/**
+/** @brief Existe auto cargado.
  * Busca dentro del arreglo de autos si hay algun auto cargado.
- * @param lista el array se pasa como parametro, del tipo arreglo de EAuto.
- * @return devuelve 0 si no hay personas cargadas o 1 si hay personas cargadas.
+ * @param lista Es el arreglo de autos, del tipo EAuto.
+ * @return devuelve 0 si no hay autos cargados en el arreglo o 1 si hay autos cargados en el arreglo.
  */
-
 char existenAutoCargado(EAuto []);
+
+/** @brief Existe propietario con auto.
+ * Busca dentro del arreglo de autos si un propietario tiene auto cargado dentro del mismo.
+ * @param listaAuto Es el arreglo de autos, del tipo EAuto.
+ * @return devuelve 0 si el propietario no tiene autos cargados en el arreglo o 1 si el propietario tiene autos cargados en el arreglo.
+ */
 char exitePropietarioConAuto(EAuto [],int);
+
+/** @brief Existe auto AUDI.
+ * Busca dentro del arreglo de autos si hay algun auto cargado que sea de la marca AUDI.
+ * @param listaAuto Es el arreglo de autos, del tipo EAuto.
+ * @return devuelve 0 si no hay autos de la marca AUDI cargados en el arreglo o 1 si hay autos de la marca AUDI cargados en el arreglo.
+ */
 char exiteAutoAudi(EAuto []);
+
+/** @brief Obtener auto libre.
+ * Busca dentro del arreglo de autos el primer espacio libre dentro del mismo.
+ * @param lista Es el arreglo de autos, del tipo EAuto.
+ * @return devuelve el primer indice libre o -1 si no hay mas espacio en el arreglo.
+ */
 int obtenerAutoLibre(EAuto []);
+
+/** @brief Buscar auto.
+ * Busca dentro del arreglo de autos, un auto mediante su patente.
+ * @param lista Es el arreglo de autos, del tipo EAuto.
+ * @param patente Es la patente del auto, del arreglo de char.
+ * @return devuelve el indice donde encontro la patente buscada o -1 si no encontro la patente.
+ */
 int buscarAuto(EAuto [], char *);
 
 #endif // AUTO_H_INCLUDED

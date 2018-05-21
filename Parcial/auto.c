@@ -55,30 +55,6 @@ char existenAutoCargado(EAuto lista[]){
     return 0;
 }
 
-int obtenerAutoLibre(EAuto lista[]){
-    int indice=0;
-
-    while(!(strcmp(lista[indice].patente,"0")==0) && ++indice<CAUTO);
-
-    if(indice<CAUTO){
-        return indice;
-    }else{
-        return -1;
-    }
-}
-
-int buscarAuto(EAuto lista[], char *patente){
-    int indice=0;
-
-    while(strcmp(lista[indice].patente, patente) && ++indice<CAUTO);
-
-    if(indice<CAUTO){
-        return indice;
-    }else{
-        return -1;
-    }
-}
-
 char exitePropietarioConAuto(EAuto listaAuto[],int idPropietario){
     int indice=0;
 
@@ -103,4 +79,28 @@ char exiteAutoAudi(EAuto listaAuto[]){
     while(++indice<CAUTO);
 
     return 0;
+}
+
+int obtenerAutoLibre(EAuto lista[]){
+    int indice=0;
+
+    while(!(strcmp(lista[indice].patente,"0")==0) && ++indice<CAUTO);
+
+    if(indice<CAUTO){
+        return indice;
+    }else{
+        return -1;
+    }
+}
+
+int buscarAuto(EAuto lista[], char *patente){
+    int indice=0;
+
+    while(strcmp(lista[indice].patente, patente) && ++indice<CAUTO);
+
+    if(indice<CAUTO){
+        return indice;
+    }else{
+        return -1;
+    }
 }

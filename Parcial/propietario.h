@@ -24,18 +24,32 @@ typedef struct {
 
 }EPropietario;
 
-
+/** @brief Inicializar propietario.
+ * Inicializa en cero el id del propietario del arreglo de propietarios.
+ * @param lista Es el arreglo de propietarios, del tipo EPropietario.
+ * @return No se devuelve nada.
+ */
 void inisializarPropietario(EPropietario []);
 
-/**
+/** @brief Existen propietarios cargados.
  * Busca dentro del arreglo de propietarios si hay algun propietario cargado.
- * @param lista el array se pasa como parametro, del tipo arreglo de EPropietario.
+ * @param lista Es el arreglo de propietarios, del tipo EPropietario.
  * @return devuelve 0 si no hay personas cargadas o 1 si hay personas cargadas.
  */
 char existenPropietarioCargado(EPropietario []);
 
+/** @brief Obtener propietario libre.
+ * Busca dentro del arreglo de propietarios el primer espacio libre dentro del mismo.
+ * @param lista Es el arreglo de propietarios, del tipo EPropietario.
+ * @return devuelve el primer indice libre o -1 si no hay mas espacio en el arreglo.
+ */
 int obtenerPropietarioLibre(EPropietario []);
+
+/** @brief Buscar propietario.
+ * Busca dentro del arreglo de propietarios a un propietario mediante su id.
+ * @param lista Es el arreglo de propietarios, del tipo EPropietario.
+ * @param idPropietario Es el id del propietario, del tipo entero.
+ * @return devuelve el indice donde encontro al propietario buscado o -1 si no encontro al propietario.
+ */
 int buscarPropietario(EPropietario [], int);
-
-
 #endif // PROPIETARIO_H_INCLUDED
