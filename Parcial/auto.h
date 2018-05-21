@@ -1,3 +1,13 @@
+/**
+ * @brief Archivo de definiciones de funciones de auto (Parcial).
+ *
+ * El archivo contiene las definiciones de todas las funciones de auto del parcial.
+ * @file auto.h
+ * @author Juan Ignacio Guglielmone
+ * @date 08/05/2018
+ *
+*/
+
 #ifndef AUTO_H_INCLUDED
 #define AUTO_H_INCLUDED
 

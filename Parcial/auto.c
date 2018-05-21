@@ -1,3 +1,13 @@
+/**
+ * @brief Archivo de implementaciones de funciones de auto (Parcial).
+ *
+ * El archivo contiene las implementaciones de todas las funciones de auto del parcial.
+ * @file auto.c
+ * @author Juan Ignacio Guglielmone
+ * @date 08/05/2018
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

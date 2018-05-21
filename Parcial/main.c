@@ -1,10 +1,19 @@
+/**
+ * @brief Archivo principal de la aplicaion (Parcial).
+ *
+ * El archivo contiene la funcion main(principal) del parcial.
+ * @file main.c
+ * @author Juan Ignacio Guglielmone
+ * @date 08/05/2018
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "funciones.h"
 #include "propietario.h"
 #include "auto.h"
-#include "propietarioauto.h"
 
 void main(){
 
@@ -18,7 +27,8 @@ void main(){
     inisializarAuto(autos);
     inisializarRecaudaciones(&recaudaciones);
 
-    propietarios[0].idPropietario=1;
+    //Datos hardcodeados
+    /*propietarios[0].idPropietario=1;
     strcpy(propietarios[0].nya,"Juan Ignacio");
     strcpy(propietarios[0].direccion,"Tres arroyos 416 Depto D");
     strcpy(propietarios[0].tarjeta,"12345678912345678900");
@@ -64,7 +74,7 @@ void main(){
     autos[15].marca=3;
     autos[19].idPropietario=100;
     strcpy(autos[19].patente,"BGT123");
-    autos[19].marca=4;
+    autos[19].marca=4;*/
 
 
     while(seguir=='s'){
@@ -85,7 +95,7 @@ void main(){
                     agregarPropietario(propietarios);
                     break;
                 case 6:
-                    recaudacionTotal(recaudaciones.recTotal);
+                    recaudacionTotal(recaudaciones.recMarca1+recaudaciones.recMarca2+recaudaciones.recMarca3+recaudaciones.recMarca4);
                     break;
                 case 7:
                     recaudacionTotalPorMarca(recaudaciones.recMarca1,recaudaciones.recMarca2,recaudaciones.recMarca3,recaudaciones.recMarca4);
@@ -127,7 +137,7 @@ void main(){
                         agregarAuto(autos,propietarios);
                         break;
                     case 6:
-                        recaudacionTotal(recaudaciones.recTotal);
+                        recaudacionTotal(recaudaciones.recMarca1+recaudaciones.recMarca2+recaudaciones.recMarca3+recaudaciones.recMarca4);
                         break;
                      case 7:
                         recaudacionTotalPorMarca(recaudaciones.recMarca1,recaudaciones.recMarca2,recaudaciones.recMarca3,recaudaciones.recMarca4);
@@ -168,7 +178,7 @@ void main(){
                         bajaAutoManual(autos,propietarios,&recaudaciones);
                         break;
                     case 6:
-                        recaudacionTotal(recaudaciones.recTotal);
+                        recaudacionTotal(recaudaciones.recMarca1+recaudaciones.recMarca2+recaudaciones.recMarca3+recaudaciones.recMarca4);
                         break;
                     case 7:
                         recaudacionTotalPorMarca(recaudaciones.recMarca1,recaudaciones.recMarca2,recaudaciones.recMarca3,recaudaciones.recMarca4);

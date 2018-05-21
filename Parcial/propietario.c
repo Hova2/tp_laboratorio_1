@@ -1,3 +1,13 @@
+/**
+ * @brief Archivo de implementaciones de funciones de propietario (Parcial).
+ *
+ * El archivo contiene las implementaciones de todas las funciones de propietario del parcial.
+ * @file propietario.c
+ * @author Juan Ignacio Guglielmone
+ * @date 08/05/2018
+ *
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "funciones.h"

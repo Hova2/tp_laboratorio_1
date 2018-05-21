@@ -1,3 +1,13 @@
+/**
+ * @brief Archivo de definiciones de funciones de propietario (Parcial).
+ *
+ * El archivo contiene las definiciones de todas las funciones de propietario del parcial.
+ * @file propietario.h
+ * @author Juan Ignacio Guglielmone
+ * @date 08/05/2018
+ *
+*/
+
 #ifndef PROPIETARIO_H_INCLUDED
 #define PROPIETARIO_H_INCLUDED
 
