@@ -11,6 +11,11 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 
+#include "movie.h"
+
+#define TARREGLO 20
+
+
 /** @brief Imprime opciones del menu.
  *
  * Funcion que permite imprimir las opciones del menu mediante un codigo de menu.
@@ -30,10 +35,19 @@ void imprimirError(int);
 
 /**
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
- *  @param lista la lista de peliculas a ser agregadas en el archivo.
- *  @param nombre el nombre para el archivo.
+ *  @param lista La lista de peliculas a ser agregadas en el archivo.
+ *  @param nombre El nombre para el archivo.
  */
-void generarPagina(EMovie lista[], char nombre[]);
+void generarPagina(EMovie[], char[]);
+
+/**
+ *  Pide un nombre de archivo y genera la pagina web mediante la utilizacion de la funcion generarPagina.
+ *  @param lista La lista de peliculas a ser agregadas en el archivo. Del tipo arreglo de EMovie.
+ *  @return No se devuelve nada.
+ */
+void generarPaginaWeb(EMovie[]);
+
+char *cargarNombreDeArchivo(char *);
 
 /** @brief Borrar puntero.
  *
@@ -49,7 +63,7 @@ char *borrarPuntero(char *);
  * @param tipo define el tipo de dato que se lee(1 - String, 2 - StringConEspacio, 3 - AlfaNumerico, 4 - AlfaNumericoConEspacio, 5 - NumeroEntero, 6 - NumeroConComa), del tipo char.
  * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  */
-char *leerValidarDato(char *,char);
+char *leerDato(char *,char);
 
 /** @brief Formatear nombre.
  * Le da un formato predefinido a una cadena de caracteres.
@@ -57,6 +71,13 @@ char *leerValidarDato(char *,char);
  * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  */
 char *formatearNombre(char *,int);
+
+/** @brief Formatear nombre.
+ * Le da un formato predefinido a una cadena de caracteres.
+ * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
+ * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
+ */
+char *formatearNombreArchivo(char *,int);
 
 /** @brief Validar patente.
  * Valida que e formato de patente ingresado sea el correcto.

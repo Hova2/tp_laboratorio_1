@@ -4,6 +4,7 @@
 #define TDATO 100
 
 typedef struct{
+    unsigned int id;
     char titulo[TDATO];
     char genero[TDATO];
     unsigned int duracion;
@@ -12,6 +13,9 @@ typedef struct{
     char linkImagen[TDATO];
 }EMovie;
 
+void inisializarListaMovie(EMovie []);
+
+void setEmovieId(EMovie,unsigned int);
 void setEmovieTitulo(EMovie,char *);
 void setEmovieGenero(EMovie,char *);
 void setEmovieDuracion(EMovie,unsigned int);
@@ -19,6 +23,7 @@ void setEmovieDescripcion(EMovie,char *);
 void setEmoviePuntaje(EMovie,unsigned int);
 void setEmovieLinkImagen(EMovie,char *);
 
+unsigned int getEmovieId(EMovie);
 char *getEmovieTitulo(EMovie);
 char *getEmovieGenero(EMovie);
 unsigned int getEmovieDuracion(EMovie);

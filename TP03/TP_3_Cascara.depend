@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1527887888 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp03\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1527886239 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp03\funciones.h
+	"movie.h"
+
+1527886342 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp03\movie.h
+
+1527887555 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp03\funciones.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	"movie.h"
+
+1527886186 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\tp03\movie.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"movie.h"
+	"funciones.h"
+

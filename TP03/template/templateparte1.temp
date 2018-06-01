@@ -20,41 +20,4 @@
 </head>
 <body>
     <div class='container'>
-        <div class='row'><article class='col-md-4 article-intro'>
-<a href='#'><img class='img-responsive img-rounded' src='http://ia.media-imdb.com/images/M/MV5BMjA5NTYzMDMyM15BMl5BanBnXkFtZTgwNjU3NDU2MTE@._V1_UX182_CR0,0,1' alt=''></a>
-<h3>
-<a href='#'>Pelicula1</a>
-</h3>
-<ul>
-<li>Genero:Terror</li>
-<li>Puntaje:5</li>
-<li>Duracion:230</li>
-</ul>
-<p>Buena</p>
-</article>
-<article class='col-md-4 article-intro'>
-<a href='#'><img class='img-responsive img-rounded' src='Link2' alt=''></a>
-<h3>
-<a href='#'>Pelicula2</a>
-</h3>
-<ul>
-<li>Genero:Suspenso</li>
-<li>Puntaje:10</li>
-<li>Duracion:130</li>
-</ul>
-<p>Muy buena</p>
-</article>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-    <!-- jQuery -->
-    <script src='js/jquery-1.11.3.min.js'></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src='js/bootstrap.min.js'></script>
-	<!-- IE10 viewport bug workaround -->
-	<script src='js/ie10-viewport-bug-workaround.js'></script>
-	<!-- Placeholder Images -->
-	<script src='js/holder.min.js'></script>
-</body>
-</html>
+        <div class='row'>
