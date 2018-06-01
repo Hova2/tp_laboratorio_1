@@ -6,6 +6,7 @@ int main()
 {
     EMovie listaMovie[TARREGLO];
     inisializarListaMovie(listaMovie);
+    int ultimoId=0;
     /*listaMovie[0].id=1;
     strcpy(listaMovie[0].titulo,"Pelicula1");
     strcpy(listaMovie[0].genero,"Terror");
@@ -38,7 +39,7 @@ int main()
 
             switch(opcion){
                 case 1:
-
+                    ultimoId=agregarPeliculaMain(listaMovie,ultimoId);
                     break;
                 case 2:
 
@@ -67,7 +68,7 @@ int main()
 
             switch(opcion){
                 case 1:
-
+                    agregarPeliculaMain(listaMovie);
                     break;
                 case 5:
                     seguir = 'n';

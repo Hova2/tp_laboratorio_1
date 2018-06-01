@@ -11,3 +11,15 @@ void inisializarListaMovie(EMovie lista[]){
 
     while(!(lista[indice].id=0) && ++indice<TARREGLO);
 }
+
+int obtenerMovieLibre(EMovie lista[]){
+    int indice=0;
+
+    while(lista[indice].id && ++indice<TARREGLO);
+
+    if(indice<TARREGLO){
+        return indice;
+    }else{
+        return -1;
+    }
+}
