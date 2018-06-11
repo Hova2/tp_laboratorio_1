@@ -399,11 +399,15 @@ int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
 int resizeUp(ArrayList* this)
 {
     int returnAux = -1;
+    void **aux;
 
     if(this){
-        this->pElements=(void **)realloc(this->pElements, (sizeof(void **)*(this->reservedSize+AL_INCREMENT)));
-        this->reservedSize=this->reservedSize+AL_INCREMENT;
-        returnAux=0;
+        aux=(void **)realloc(this->pElements, (sizeof(void **)*(this->reservedSize+AL_INCREMENT)));
+        if(aux){
+            this->pElements=aux;
+            this->reservedSize=this->reservedSize+AL_INCREMENT;
+            returnAux=0;
+        }
     }
 
     return returnAux;
@@ -422,8 +426,7 @@ int expand(ArrayList* this,int index)
 
     if(this){
         if(this->reservedSize==this->size){
-            this->pElements[this->size+1]=malloc(sizeof(void **));
-            this->reservedSize++;
+            resizeUp(this);
         }
         this->size++;
         for(int i=this->size;i>index;i--){
