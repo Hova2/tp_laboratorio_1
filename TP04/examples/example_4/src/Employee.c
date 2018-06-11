@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../inc/Employee.h"
 
-int compareEmployee(void* pEmployeeA,void* pEmployeeB)
+int compareEmployee(void** pEmployeeA,void** pEmployeeB)
 {
 
     if(((Employee*)pEmployeeA)->salary > ((Employee*)pEmployeeB)->salary)

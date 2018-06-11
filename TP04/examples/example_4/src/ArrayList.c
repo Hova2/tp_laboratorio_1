@@ -335,7 +335,8 @@ void* al_pop(ArrayList* this,int index)
     void* returnAux = NULL;
 
     if(this){
-        if(returnAux=this->get(this,index)){
+        returnAux=this->get(this,index);
+        if(returnAux){
             contract(this,index);
         }
     }
@@ -356,6 +357,21 @@ ArrayList* al_subList(ArrayList* this,int from,int to)
 {
     void* returnAux = NULL;
 
+    if(this){
+        returnAux=al_newArrayList();
+        if(returnAux){
+            int tam=this->len(this);
+            if((to>from) && (from>=0 && from<tam)){
+                for(int i=from;i<to;i++){
+                   al_add(returnAux,this->get(this,i));
+                }
+            }else{
+                free(returnAux);
+                returnAux=NULL;
+            }
+        }
+    }
+
     return returnAux ;
 }
 
@@ -373,6 +389,17 @@ int al_containsAll(ArrayList* this,ArrayList* this2)
 {
     int returnAux = -1;
 
+    if(this && this2){
+        int tam2=this2->len(this2);
+        returnAux=1;
+        for(int i=0;i<tam2;i++){
+            if(!this->contains(this,this2->get(this2,i))){
+                returnAux=0;
+                break;
+            }
+        }
+    }
+
     return returnAux;
 }
 
@@ -383,9 +410,27 @@ int al_containsAll(ArrayList* this,ArrayList* this2)
  * \return int Return (-1) if Error [pList or pFunc are NULL pointer]
  *                  - (0) if ok
  */
-int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
+int al_sort(ArrayList* this, int (*pFunc)(void** ,void**), int order)
 {
     int returnAux = -1;
+
+    if(this && pFunc){
+        if(order==0 || order==1){
+            int tam=this->len(this);
+            for(int i=0;i<tam;i++){
+                for(int j=i+1;j<tam;j++){
+                    int res=pFunc(this->get(this,i),this->get(this,j));
+                    if((res==1 && order==1) || (res==-1 && order==0)){
+                        void ** pElementAux1=this->get(this,i);
+                        void ** pElementAux2=this->get(this,j);
+                        this->set(this,j,pElementAux1);
+                        this->set(this,i,pElementAux2);
+                    }
+                }
+            }
+            returnAux=0;
+        }
+    }
 
     return returnAux;
 }
@@ -448,12 +493,20 @@ int contract(ArrayList* this,int index)
 {
     int returnAux = -1;
 
-    if(this && (index>=0 && index<this->size) && this->size!=0){
-        for(int i=index;i<(this->size-1);i++){
-            this->pElements[i]=this->pElements[i+1];
+    if(this){
+        if((index>=0 && index<this->size) && this->size!=0){
+            if(this->reservedSize-this->size==AL_INCREMENT){
+                for(int i=this->size;i<this->reservedSize;i++){
+                    free(this->pElements[i]);
+                }
+                this->reservedSize=this->reservedSize-AL_INCREMENT;
+            }
+            for(int i=index;i<(this->size-1);i++){
+                this->pElements[i]=this->pElements[i+1];
+            }
+            this->size--;
+            returnAux=0;
         }
-        this->size--;
-        returnAux=0;
     }
 
     return returnAux;
