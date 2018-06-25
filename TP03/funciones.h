@@ -65,19 +65,21 @@ char *borrarPuntero(char *);
  */
 char *leerDato(char *,char);
 
-/** @brief Formatear nombre.
+/** @brief Formatear nombre del archivo.
  * Le da un formato predefinido a una cadena de caracteres.
  * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
- * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
- */
-char *formatearNombre(char *,int);
-
-/** @brief Formatear nombre.
- * Le da un formato predefinido a una cadena de caracteres.
- * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
+ * @param tam Es el tamaño del arreglo de char, del tipo entero.
  * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  */
 char *formatearNombreArchivo(char *,int);
+
+/** @brief Formatear nombre de una pelicula..
+ * Le da un formato predefinido a una cadena de caracteres.
+ * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
+ * @param tam Es el tamaño del arreglo de char, del tipo entero.
+ * @return puntero a un arreglo de char, del tipo puntero a un arreglo de char.
+ */
+char *formatearNombrePelicula(char *,int);
 
 /** @brief Validar patente.
  * Valida que e formato de patente ingresado sea el correcto.

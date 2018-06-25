@@ -14,6 +14,8 @@ typedef struct{
 }EMovie;
 
 void inisializarListaMovie(EMovie []);
+int obtenerMovieLibre(EMovie []);
+int contarElementos(EMovie []);
 
 void setEmovieId(EMovie,unsigned int);
 void setEmovieTitulo(EMovie,char *);

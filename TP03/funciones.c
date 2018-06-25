@@ -291,26 +291,6 @@ char *leerDato(char *dato,char tipo){
     return dato;
 }
 
-char *formatearNombre(char *dato, int tam){
-    char *aux=malloc(sizeof(char) * TDATO);
-    int cont=1;
-    aux=dato;
-    *aux=toupper(*aux);
-    while(cont<tam){
-        ++aux;
-        cont++;
-        if(*aux==' '){
-            ++aux;
-            cont++;
-            *aux=toupper(*aux);
-        }else{
-            *aux=tolower(*aux);
-        }
-    }
-
-    return dato;
-}
-
 char *formatearNombreArchivo(char *dato, int tam){
     char *aux=malloc(sizeof(char) * TDATO);
     int cont=1;
@@ -339,26 +319,6 @@ char *formatearNombrePelicula(char *dato, int tam){
     }
 
     return dato;
-}
-int devolverHorasEstadia(){
-    int horas;
-    srand(time(NULL));
-    horas = (rand()%24)+1;
-
-    return horas ;
-
-}
-int contarElementos(EMovie lista[]){
-    int cont=0;
-    for(int i=0;i<TARREGLO;i++){
-        if(lista[i].id){
-            cont++;
-        }
-    }
-    if(cont){
-        return cont;
-    }
-    return cont;
 }
 
 int agregarPeliculaMain(EMovie lista[],int ultimoId){

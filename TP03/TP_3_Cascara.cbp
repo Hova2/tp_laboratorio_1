@@ -38,6 +38,9 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="movie.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="movie.h" />
 		<Extensions>
 			<code_completion />

@@ -23,3 +23,16 @@ int obtenerMovieLibre(EMovie lista[]){
         return -1;
     }
 }
+
+int contarElementos(EMovie lista[]){
+    int cont=0;
+    for(int i=0;i<TARREGLO;i++){
+        if(lista[i].id){
+            cont++;
+        }
+    }
+    if(cont){
+        return cont;
+    }
+    return cont;
+}
