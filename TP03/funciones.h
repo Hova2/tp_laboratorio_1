@@ -93,13 +93,21 @@ char validarPatente(char *);
  *  @param movie la estructura a ser agregada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
  */
-int agregarPelicula(EMovie movie);
+void actualizarArchivo(EMovie*);
 
 /**
  *  Borra una pelicula del archivo binario
  *  @param movie la estructura a ser eliminada al archivo
  *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
  */
-int borrarPelicula(EMovie movie);
+void borrarPelicula(EMovie[]);
+void modificarPelicula(EMovie []);
+
+int buscarPorId(EMovie[], int);
+
+FILE *devuelveArchivo(int);
+void cargarArreglo(EMovie[]);
+
+int buscarUltimoID(EMovie[]);
 
 #endif // FUNCIONES_H_INCLUDED
