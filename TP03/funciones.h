@@ -33,19 +33,28 @@ void imprimirOpcionMenu(int);
  */
 void imprimirError(int);
 
-/**
+/** @brief Generar pagina.
+ *
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
  *  @param lista La lista de peliculas a ser agregadas en el archivo.
  *  @param nombre El nombre para el archivo.
  */
 void generarPagina(EMovie[], char[]);
 
-/**
- *  Pide un nombre de archivo y genera la pagina web mediante la utilizacion de la funcion generarPagina.
+/** @brief Generar pagina web.
+ *
+ *  Genera la pagina web mediante la utilizacion de la funcion generarPagina.
  *  @param lista La lista de peliculas a ser agregadas en el archivo. Del tipo arreglo de EMovie.
  *  @return No se devuelve nada.
  */
 void generarPaginaWeb(EMovie[]);
+
+/** @brief Cargar nombre de archivo.
+ *
+ *  Solicita por pantalla que se ingrese un nombre de archivo para la pagina web.
+ *  @param nombre Es el nombre del archivo. Del tipo puntero a char.
+ *  @return El nombre del archivo. Del tipo puntero a char.
+ */
 
 char *cargarNombreDeArchivo(char *);
 
@@ -58,6 +67,7 @@ char *cargarNombreDeArchivo(char *);
 char *borrarPuntero(char *);
 
 /** @brief Leer validar dato.
+ *
  * Lee por entrada estandar una cadena de caracteres y valida que lo ingresado sea correcto.
  * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  * @param tipo define el tipo de dato que se lee(1 - String, 2 - StringConEspacio, 3 - AlfaNumerico, 4 - AlfaNumericoConEspacio, 5 - NumeroEntero, 6 - NumeroConComa), del tipo char.
@@ -66,6 +76,7 @@ char *borrarPuntero(char *);
 char *leerDato(char *,char);
 
 /** @brief Formatear nombre del archivo.
+ *
  * Le da un formato predefinido a una cadena de caracteres.
  * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  * @param tam Es el tamaño del arreglo de char, del tipo entero.
@@ -73,7 +84,8 @@ char *leerDato(char *,char);
  */
 char *formatearNombreArchivo(char *,int);
 
-/** @brief Formatear nombre de una pelicula..
+/** @brief Formatear nombre de una pelicula.
+ *
  * Le da un formato predefinido a una cadena de caracteres.
  * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
  * @param tam Es el tamaño del arreglo de char, del tipo entero.
@@ -81,33 +93,62 @@ char *formatearNombreArchivo(char *,int);
  */
 char *formatearNombrePelicula(char *,int);
 
-/** @brief Validar patente.
- * Valida que e formato de patente ingresado sea el correcto.
- * @param dato es un puntero a un arreglo de char, del tipo puntero a un arreglo de char.
- * @return 0-Si el formato es invalido,1-Si el formato es valido, del tipo char.
+/** @brief Actualizar archivo de peliculas.
+ *
+ *  Escribe nuevamente el archivo binario con los cambios que se realizaron.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return No devuelve nada.
  */
-char validarPatente(char *);
+void actualizarArchivo(EMovie[]);
 
-/**
- *  Agrega una pelicula al archivo binario
- *  @param movie la estructura a ser agregada al archivo
- *  @return retorna 1 o 0 de acuerdo a si pudo agregar la pelicula o no
- */
-void actualizarArchivo(EMovie*);
-
-/**
- *  Borra una pelicula del archivo binario
- *  @param movie la estructura a ser eliminada al archivo
- *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
+/** @brief Borrar pelicula.
+ *
+ *  Borra una pelicula del archivo binario.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return No devuelve nada.
  */
 void borrarPelicula(EMovie[]);
+
+/** @brief Modificar pelicula.
+ *
+ *  Modifica una pelicula del archivo binario.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return No devuelve nada.
+ */
 void modificarPelicula(EMovie []);
 
+/** @brief Buscar id.
+ *
+ *  Busca dentro del arreglo de peliculas un id espesifico.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @param id Es el id de la pelicula que se esta buscando. Del tipo entero.
+ *  @return Devuelve el indice donde se encuentra la pelicula. Del tipo entero.
+ */
 int buscarPorId(EMovie[], int);
 
+/** @brief Devuelve archivo.
+ *
+ *  Devuelve un puntero a archivo y dependiendo del parametro de la funcion lo devuelve en modo lectura o escritura.
+ *  @param opcion Es el modo en que se va a abrir el archivo. 1-Se abre en modo lectura, 2-Se abre en modo escritura. Del tipo entero.
+ *  @return Devuelve el puntero al archivo. Del tipo puntero a archivo.
+ */
 FILE *devuelveArchivo(int);
+
+/** @brief Cargar arreglo.
+ *
+ *  Carga en memoria el archivo de peliculas.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return No devuelve nada.
+ */
 void cargarArreglo(EMovie[]);
 
+
+/** @brief Buscar ultimo id.
+ *
+ *  Busca dentro del arreglo de peliculas cual es el ultimo id que se cargo y le suma uno.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return Devuelve el ultimo id que se puede utilizar para cargar una pelicula nueva. De tipo entero.
+ */
 int buscarUltimoID(EMovie[]);
 
 #endif // FUNCIONES_H_INCLUDED
