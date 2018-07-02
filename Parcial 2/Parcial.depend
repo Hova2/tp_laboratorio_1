@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1530543359 source:c:\test\parcial\parcial\eempleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530535269 source:c:\test\parcial\parcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"parser.h"
+
+1530543447 source:c:\test\parcial\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530543345 source:c:\test\parcial\parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530543223 c:\test\parcial\parcial\arraylist.h
+
+1530543213 c:\test\parcial\parcial\eempleado.h
+
+1530535233 c:\test\parcial\parcial\parser.h
+
+1530541975 source:c:\test\parcial\parcial\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530552094 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1530552094 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\arraylist.h
+
+1530567364 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\eempleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530552094 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\eempleado.h
+
+1530573133 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530566730 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"eEmpleado.h"
+
+1530572188 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"parser.h"
+	"eEmpleado.h"
+
+1530552094 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\parcial 2\parser.h
+

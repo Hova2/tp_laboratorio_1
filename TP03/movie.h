@@ -13,24 +13,29 @@ typedef struct{
     char linkImagen[TDATO];
 }EMovie;
 
+
+/** @brief Inicializar lista de peliculas.
+ *
+ *  Inicializa la lista de peliculas poniendo todos los id en cero.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return No devuelve nada.
+ */
 void inisializarListaMovie(EMovie []);
 
-void setEmovieId(EMovie,unsigned int);
-void setEmovieTitulo(EMovie,char *);
-void setEmovieGenero(EMovie,char *);
-void setEmovieDuracion(EMovie,unsigned int);
-void setEmovieDescripcion(EMovie,char *);
-void setEmoviePuntaje(EMovie,unsigned int);
-void setEmovieLinkImagen(EMovie,char *);
+/** @brief Obtener pelicula libre.
+ *
+ *  Busca dentro de la lista de peliculas cual es el primer id en cero.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return Devuelve el indicie del primer elemento con id en cero. Del tipo entero.
+ */
+int obtenerMovieLibre(EMovie []);
 
-unsigned int getEmovieId(EMovie);
-char *getEmovieTitulo(EMovie);
-char *getEmovieGenero(EMovie);
-unsigned int getEmovieDuracion(EMovie);
-char *getEmovieDescripcion(EMovie);
-unsigned int getEmoviePuntaje(EMovie);
-char *getEmovieLinkImagen(EMovie);
-
-
+/** @brief Contar cantidad de peliculas.
+ *
+ *  Cuenta cuantas peliculas hay cargadas dentro del listado de peliculas.
+ *  @param lista Es el listado de peliculas. Del tipo arreglo de EMovie.
+ *  @return Devuelve el numero de peliculas cargadas en el listado de peliculas. Del tipo entero.
+ */
+int contarElementos(EMovie []);
 
 #endif // MOVIE_H_INCLUDED

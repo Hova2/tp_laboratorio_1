@@ -254,9 +254,6 @@ ArrayList* al_clone(ArrayList* this)
     return returnAux;
 }
 
-
-
-
 /** \brief Inserts the element at the specified position
  * \param pList ArrayList* Pointer to arrayList
  * \param index int Index of the element
@@ -363,7 +360,7 @@ ArrayList* al_subList(ArrayList* this,int from,int to)
             int tam=this->len(this);
             if((to>from) && (from>=0 && from<tam)){
                 for(int i=from;i<to;i++){
-                   al_add(returnAux,this->get(this,i));
+                   ((ArrayList *)returnAux)->add((ArrayList *)returnAux,this->get(this,i));
                 }
             }else{
                 free(returnAux);

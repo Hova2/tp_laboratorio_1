@@ -23,13 +23,13 @@ void imprimirOpcionMenu(int opcion){
             printf("1 - Agregar pelicula\n");
             break;
         case 2:
-            printf("2 - Modificar propietario\n");
+            printf("2 - Modificar pelicula\n");
             break;
         case 3:
-            printf("3 - Baja propietario\n");
+            printf("3 - Borrar pelicula\n");
             break;
         case 4:
-            printf("4 - Agregar auto\n");
+            printf("4 - Generar archivo html de peliculas\n");
             break;
         case 5:
             printf("5 - Salir\n");
@@ -48,61 +48,46 @@ void imprimirError(int codigo){
             printf("El nombre debe tener 8 caracteres como maximo!!!!\n");
             break;
         case 3:
-            printf("La direccion ingresada es incorrecta!!!!\n");
+            printf("El titulo ingresado es incorrecto!!!!\n");
             break;
         case 4:
-            printf("La tarjeta ingresada es incorrecta!!!!\n");
+            printf("El genero ingresado es incorrecto!!!!\n");
             break;
         case 5:
-            printf("El ID ya existe!!!!\n");
+            printf("La duracion ingresada es incorrecta!!!!\n");
             break;
         case 6:
-            printf("No hay mas espacio para cargar peliculas!!!!\n");
+            printf("La descripcion ingresada es incorrecta!!!!\n");
             break;
         case 7:
-            printf("El ID no existe!!!!\n");
+            printf("El puntaje ingresado es incorrecto!!!!\n");
             break;
         case 8:
-            printf("El ID debe ser mayor a 0!!!!\n");
+            printf("El link ingresado es incorrecto!!!!\n");
             break;
         case 9:
-            printf("La patente debe ser mayor a 0!!!!\n");
+            printf("La duracion debe ser mayor a 0 y menor o igual a 240!!!!\n");
             break;
         case 10:
-            printf("La patente ya existe!!!!\n");
+            printf("El puntaje debe ser mayor a 0 y menor o igual a 10!!!!\n");
             break;
         case 11:
-            printf("La patente debe ser mayor a 0!!!!\n");
+            printf("No hay espacio para cargar peliculas!!!!\n");
             break;
         case 12:
-            printf("La patente ingresada es incorrecta!!!!\n");
+            printf("El id ingresado es incorrecto!!!!\n");
             break;
         case 13:
-            printf("No hay espacio para cargar autos!!!!\n");
+            printf("No se encuentra el id ingresado!!!!\n");
             break;
         case 14:
             printf("La opcion ingresada es invalida!!!!\n");
             break;
         case 15:
-            printf("La patente tiene que comezar con 3 letras y seguir con 3 numeros!!!!\n");
+            printf("El nombre de archivo ingresado es incorrecto!!!!\n");
             break;
         case 16:
-            printf("El nombre y apellido no puede tener mas de 50 letras!!!!\n");
-            break;
-        case 17:
-            printf("La direccion no puede tener mas de 75 letras!!!!\n");
-            break;
-        case 18:
-            printf("La tarjeta debe tener 20 numeros!!!!\n");
-            break;
-        case 19:
-            printf("La patente debe tener 6 caracteres!!!!\n");
-            break;
-        case 20:
-            printf("La marca ingresada es incorrecta!!!!\n");
-            break;
-        case 21:
-            printf("La patente no existe!!!!\n");
+            printf("El nombre de archivo debe tener como maximo 8 caracteres!!!!\n");
             break;
      }
      system("pause");
@@ -191,11 +176,11 @@ char *cargarNombreDeArchivo(char *nombre){
                 return nombre;
             }else{
                 nombre=borrarPuntero(nombre);
-                imprimirError(2);
+                imprimirError(16);
             }
         }else{
             nombre=borrarPuntero(nombre);
-            imprimirError(1);
+            imprimirError(15);
         }
     }
 }
@@ -291,26 +276,6 @@ char *leerDato(char *dato,char tipo){
     return dato;
 }
 
-char *formatearNombre(char *dato, int tam){
-    char *aux=malloc(sizeof(char) * TDATO);
-    int cont=1;
-    aux=dato;
-    *aux=toupper(*aux);
-    while(cont<tam){
-        ++aux;
-        cont++;
-        if(*aux==' '){
-            ++aux;
-            cont++;
-            *aux=toupper(*aux);
-        }else{
-            *aux=tolower(*aux);
-        }
-    }
-
-    return dato;
-}
-
 char *formatearNombreArchivo(char *dato, int tam){
     char *aux=malloc(sizeof(char) * TDATO);
     int cont=1;
@@ -340,26 +305,6 @@ char *formatearNombrePelicula(char *dato, int tam){
 
     return dato;
 }
-int devolverHorasEstadia(){
-    int horas;
-    srand(time(NULL));
-    horas = (rand()%24)+1;
-
-    return horas ;
-
-}
-int contarElementos(EMovie lista[]){
-    int cont=0;
-    for(int i=0;i<TARREGLO;i++){
-        if(lista[i].id){
-            cont++;
-        }
-    }
-    if(cont){
-        return cont;
-    }
-    return cont;
-}
 
 int agregarPeliculaMain(EMovie lista[],int ultimoId){
     char *titulo=NULL;
@@ -383,10 +328,10 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
             titulo=malloc(sizeof(char) * TDATO);
             printf("Ingrese el titulo de la pelicula: ");
             if(leerDato(titulo,2)){
-                strcpy(movieTmp.descripcion,formatearNombrePelicula(titulo,strlen(titulo)));
+                strcpy(movieTmp.titulo,formatearNombrePelicula(titulo,strlen(titulo)));
             }else{
                 titulo=borrarPuntero(titulo);
-                imprimirError(2);
+                imprimirError(3);
             }
         }
         if(genero){
@@ -398,7 +343,7 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
                 strcpy(movieTmp.genero,formatearNombrePelicula(genero,strlen(genero)));
             }else{
                 genero=borrarPuntero(genero);
-                imprimirError(2);
+                imprimirError(4);
             }
         }
        if(duracion){
@@ -413,11 +358,11 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
                     movieTmp.duracion=auxDuracion;
                 }else{
                     duracion=borrarPuntero(duracion);
-                    imprimirError(8);
+                    imprimirError(9);
                 }
             }else{
                 duracion=borrarPuntero(duracion);
-                imprimirError(2);
+                imprimirError(5);
             }
         }
         if(descripcion){
@@ -429,7 +374,7 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
                 strcpy(movieTmp.descripcion,formatearNombrePelicula(descripcion,strlen(descripcion)));
             }else{
                 descripcion=borrarPuntero(descripcion);
-                imprimirError(2);
+                imprimirError(6);
             }
         }
         if(puntaje){
@@ -444,11 +389,11 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
                     movieTmp.puntaje=auxPuntaje;
                 }else{
                     puntaje=borrarPuntero(puntaje);
-                    imprimirError(8);
+                    imprimirError(10);
                 }
             }else{
                 puntaje=borrarPuntero(puntaje);
-                imprimirError(2);
+                imprimirError(7);
             }
         }
         if(link){
@@ -461,7 +406,7 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
                 strcpy(movieTmp.linkImagen,link);
             }else{
                 link=borrarPuntero(link);
-                imprimirError(2);
+                imprimirError(8);
             }
         }
         system("pause");
@@ -469,7 +414,7 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
         movieTmp.id=ultimoId;
         ultimoId++;
         lista[indice]=movieTmp;
-        agregarPelicula(movieTmp);
+        actualizarArchivo(lista);
         free(titulo);
         free(genero);
         free(duracion);
@@ -477,25 +422,225 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
         free(puntaje);
         free(link);
     }else{
-        imprimirError(6);
+        imprimirError(11);
     }
-
-
 
     return ultimoId;
 }
 
-agregarPelicula(EMovie pelicula){
-    FILE *bd;
-    if(bd=fopen("./bd/bd.dat","rb")!=NULL){
-        fclose(bd);
-        bd=fopen("./bd/bd.dat","wb");
-        fwrite(&pelicula,sizeof(EMovie),1,bd);
+int buscarPorId(EMovie lista[], int id){
+    int indice=0;
+
+    while(!(lista[indice].id && lista[indice].id==id) && ++indice<TARREGLO);
+
+    if(indice<TARREGLO){
+        return indice;
     }else{
-        bd=fopen("./bd/bd.dat","wb");
-        fwrite(&pelicula,sizeof(EMovie),1,bd);
+        return -1;
     }
+}
+
+void borrarPelicula(EMovie lista[]){
+    char *id=NULL;
+    int indice;
+    while(!id){
+        system("cls");
+        if(!id){
+            id=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el id de pelicula a borrar: ");
+            if(!leerDato(id,5)){
+                id=borrarPuntero(id);
+                imprimirError(12);
+            }
+        }
+    }
+    if((indice=buscarPorId(lista,atoi(id)))!=-1){
+        lista[indice].id=0;
+        printf("Se borro el id de pelicula ingresado!!!\n");
+        actualizarArchivo(lista);
+        system("pause");
+    }else{
+           imprimirError(13);
+    }
+
+}
+
+void modificarPelicula(EMovie lista[]){
+    char *titulo=NULL;
+    char *genero=NULL;
+    char *duracion=NULL;
+    char *descripcion=NULL;
+    char *puntaje=NULL;
+    char *link=NULL;
+    EMovie movieTmp;
+
+    char *id=NULL;
+    int indice;
+    while(!id){
+        system("cls");
+        if(!id){
+            id=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el id de pelicula a modificar: ");
+            if(!leerDato(id,5)){
+                id=borrarPuntero(id);
+                imprimirError(12);
+            }
+        }
+    }
+
+    if((indice=buscarPorId(lista,atoi(id)))!=-1){
+        while(!titulo || !genero || !duracion || !descripcion || !puntaje || !link){
+        system("cls");
+        fflush(stdin);
+        printf("Modificar pelicula:\n");
+        if(titulo){
+            printf("Titulo: %s\n",titulo);
+        }else{
+            titulo=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el titulo de la pelicula: ");
+            if(leerDato(titulo,2)){
+                strcpy(movieTmp.titulo,formatearNombrePelicula(titulo,strlen(titulo)));
+            }else{
+                titulo=borrarPuntero(titulo);
+                imprimirError(3);
+            }
+        }
+        if(genero){
+            printf("Genero: %s\n",genero);
+        }else{
+            genero=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el genero de la pelicula: ");
+            if(leerDato(genero,2)){
+                strcpy(movieTmp.genero,formatearNombrePelicula(genero,strlen(genero)));
+            }else{
+                genero=borrarPuntero(genero);
+                imprimirError(4);
+            }
+        }
+       if(duracion){
+            printf("Duracion: %s\n",duracion);
+        }else{
+            duracion=malloc(sizeof(char) * TDATO);
+            printf("Ingrese la duracion de la pelicula: ");
+            if(leerDato(duracion,5)){
+                strtok(duracion, "\n");
+                int auxDuracion=atoi(duracion);
+                if(auxDuracion>0 && auxDuracion<=240){
+                    movieTmp.duracion=auxDuracion;
+                }else{
+                    duracion=borrarPuntero(duracion);
+                    imprimirError(9);
+                }
+            }else{
+                duracion=borrarPuntero(duracion);
+                imprimirError(5);
+            }
+        }
+        if(descripcion){
+            printf("Descripcion: %s\n",descripcion);
+        }else{
+            descripcion=malloc(sizeof(char) * TDATO);
+            printf("Ingrese la descripcion de la pelicula: ");
+            if(leerDato(descripcion,2)){
+                strcpy(movieTmp.descripcion,formatearNombrePelicula(descripcion,strlen(descripcion)));
+            }else{
+                descripcion=borrarPuntero(descripcion);
+                imprimirError(6);
+            }
+        }
+        if(puntaje){
+            printf("Puntaje: %s\n",puntaje);
+        }else{
+            puntaje=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el puntaje de la pelicula: ");
+            if(leerDato(puntaje,5)){
+                strtok(puntaje, "\n");
+                int auxPuntaje=atoi(puntaje);
+                if(auxPuntaje>0 && auxPuntaje<=10){
+                    movieTmp.puntaje=auxPuntaje;
+                }else{
+                    puntaje=borrarPuntero(puntaje);
+                    imprimirError(10);
+                }
+            }else{
+                puntaje=borrarPuntero(puntaje);
+                imprimirError(7);
+            }
+        }
+        if(link){
+            printf("Link: %s\n",link);
+        }else{
+            link=malloc(sizeof(char) * TDATO);
+            printf("Ingrese el link de la imagen de la pelicula: ");
+            if(leerDato(link,1)){
+                strtok(link, "\n");
+                strcpy(movieTmp.linkImagen,link);
+            }else{
+                link=borrarPuntero(link);
+                imprimirError(8);
+            }
+        }
+        system("pause");
+    }
+        movieTmp.id=lista[indice].id;
+        lista[indice]=movieTmp;
+        actualizarArchivo(lista);
+        free(titulo);
+        free(genero);
+        free(duracion);
+        free(descripcion);
+        free(puntaje);
+        free(link);
+    }else{
+        imprimirError(13);
+    }
+
+}
+
+
+void actualizarArchivo(EMovie lista[]){
+
+    int cant=contarElementos(lista);
+    FILE *bd=devuelveArchivo(2);
+
+    fwrite(&cant,sizeof(int),1,bd);
+    fwrite(lista,sizeof(EMovie),TARREGLO,bd);
     fclose(bd);
+}
+
+FILE *devuelveArchivo(int opcion){
+    FILE *bd;
+
+    switch(opcion){
+    case 1:
+        bd=fopen("./bd/bd.dat","rb");
+        break;
+    case 2:
+        bd=fopen("./bd/bd.dat","wb");
+        break;
+    }
+
+    return bd;
+}
+
+void cargarArreglo(EMovie lista[]){
+
+    int cant;
+    FILE* bd=devuelveArchivo(1);
+    fread(&cant,sizeof(int),1,bd);
+    fread(lista,sizeof(EMovie),TARREGLO,bd);
+    fclose(bd);
+}
+
+int buscarUltimoID(EMovie lista[]){
+    int ultimo=0;
+    for(int i=0;i<TARREGLO;i++){
+        if(lista[i].id>ultimo){
+            ultimo=lista[i].id;
+        }
+    }
+
+    return ultimo+1;
 }
 
 

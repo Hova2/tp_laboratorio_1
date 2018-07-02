@@ -27,3 +27,31 @@
 	"movie.h"
 	"funciones.h"
 
+1530491440 source:d:\juani\git\tp_laboratorio_1\tp03\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1530498165 d:\juani\git\tp_laboratorio_1\tp03\funciones.h
+	"movie.h"
+
+1530498345 d:\juani\git\tp_laboratorio_1\tp03\movie.h
+
+1527968066 source:d:\juani\git\tp_laboratorio_1\tp03\movie.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"movie.h"
+	"funciones.h"
+
+1530497286 source:d:\juani\git\tp_laboratorio_1\tp03\funciones.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	"movie.h"
+
