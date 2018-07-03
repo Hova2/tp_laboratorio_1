@@ -55,3 +55,31 @@
 	"funciones.h"
 	"movie.h"
 
+1530620010 source:c:\test\tp03\funciones.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+	"movie.h"
+
+1530544127 c:\test\tp03\funciones.h
+	"movie.h"
+
+1530619285 c:\test\tp03\movie.h
+
+1530544127 source:c:\test\tp03\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1530544127 source:c:\test\tp03\movie.c
+	<stdio.h>
+	<ctype.h>
+	<time.h>
+	<stdlib.h>
+	<string.h>
+	"movie.h"
+	"funciones.h"
+
