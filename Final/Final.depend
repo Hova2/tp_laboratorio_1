@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1532025394 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1528746639 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\arraylist.h
+
+1532038862 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1532044771 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.h
+
+1532031245 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+
+1532040519 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"parser.h"
+
+1532026102 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.h
+

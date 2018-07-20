@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#define TDATO 50
+
+
+int main(){
+
+char valido=0;
+    char *dato;
+
+    while(1){
+    printf("Ingrese un string sin espacios: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,1)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un string con espacios: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,2)){
+            formatearDato(dato,4);
+            printf("%s",dato);
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un alfanumerico sin espacio: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,3)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un alfanumerico con espacio: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,4)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un numero entero: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,5)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un numero con coma: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,6)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese cualquier caracter: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,7)){
+            printf("El dato es valido\n");
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    }
+
+    return 0;
+}
