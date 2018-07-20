@@ -7,23 +7,36 @@
 
 1528746639 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\arraylist.h
 
-1532038862 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\main.c
+1532120585 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"
+	"parser.h"
+	"ArrayList.h"
+	"eMercaderia.h"
 
-1532044771 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.h
+1532110274 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.h
 
-1532031245 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.c
+1532120460 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"ArrayList.h"
+	"eMercaderia.h"
 
-1532040519 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.c
+1532120100 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.c
 	<stdio.h>
 	<stdlib.h>
 	"ArrayList.h"
 	"parser.h"
 
-1532026102 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.h
+1532115454 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.h
+	"ArrayList.h"
+
+1532112437 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\emercaderia.h
+
+1532115475 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\emercaderia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eMercaderia.h"
 

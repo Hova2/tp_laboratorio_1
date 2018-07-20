@@ -1,0 +1,77 @@
+int main(){
+
+char valido=0;
+    char *dato;
+    void *imprimir;
+
+    while(1){
+    printf("Ingrese un string sin espacios: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,1)){
+            printf("El dato es: %s",(char *)formatearDato(dato,3));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un string con espacios: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,2)){
+            printf("El dato es: %s",(char *)formatearDato(dato,4));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un alfanumerico sin espacio: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,3)){
+            printf("El dato es: %s",(char *)formatearDato(dato,1));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un alfanumerico con espacio: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,4)){
+            printf("El dato es: %s",(char *)formatearDato(dato,2));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un numero entero: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,5)){
+            printf("El dato es: %d",*(int *)formatearDato(dato,6));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese un numero con coma: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,6)){
+            printf("El dato es: %f",*(double *)formatearDato(dato,7));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("Ingrese cualquier caracter: ");
+    if(dato=leerDato()){
+        if(validarDato(dato,7)){
+            printf("El dato es: %s",(char *)formatearDato(dato,5));
+        }else{
+            printf("El dato es invalido\n");
+        }
+    }
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    }
+
+    return 0;
+}

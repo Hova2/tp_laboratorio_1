@@ -25,6 +25,17 @@
 
 }*/
 
+char *leerDatoPorPantalla(){
+    char *salida=malloc(sizeof(char) * TDATO);
+
+    if(salida){
+        fflush(stdin);
+        fgets(salida, TDATO, stdin);
+    }
+
+    return salida;
+}
+
 char validarDato(char *dato,char tipo){
 
     char contPunto=0;
@@ -78,10 +89,10 @@ char validarDato(char *dato,char tipo){
                     }
                     break;
                 case 6:
-                    if (!((*aux >= '0' && *aux <= '9') || (*aux==',') || (*aux=='.') || (*aux=='\n'))){
+                    if (!((*aux >= '0' && *aux <= '9') || (*aux=='.') || (*aux=='\n'))){
                         salida=0;
                     }else{
-                        if((*aux==',') || (*aux=='.')){
+                        if(*aux=='.'){
                             contPunto++;
                         }
                     }
@@ -105,25 +116,12 @@ char validarDato(char *dato,char tipo){
         salida=0;
     }
 
-    if(salida){
-        strtok(dato, "\n");
-    }
-
-    return salida;
-}
-
-char *leerDato(){
-    char *salida=malloc(sizeof(char) * TDATO);
-
-    if(salida){
-        fflush(stdin);
-        fgets(salida, TDATO, stdin);
-    }
-
     return salida;
 }
 
 void *formatearDato(char *dato,char tipo){
+
+    strtok(dato, "\n");
 
     void *salida;
 
@@ -132,23 +130,23 @@ void *formatearDato(char *dato,char tipo){
         int tam=strlen(dato);
         int cont=0;
         switch(tipo){
-        case 1:
+            case 1:
                 while(cont<tam){
                     *aux=toupper(*aux);
                     aux++;
                     cont++;
                 }
-                salida=(void *)aux;
+                salida=(void *)dato;
                 break;
-        case 2:
+            case 2:
                 while(cont<tam){
                     *aux=tolower(*aux);
-                    aux++;
-                    cont++;
+                     aux++;
+                     cont++;
                 }
-                salida=(void *)aux;
+                salida=(void *)dato;
                 break;
-        case 3:
+            case 3:
                 *aux=toupper(*aux);
                 aux++;
                 cont++;
@@ -157,9 +155,9 @@ void *formatearDato(char *dato,char tipo){
                     aux++;
                     cont++;
                 }
-                salida=(void *)aux;
+                salida=(void *)dato;
                 break;
-        case 4:
+            case 4:
                 *aux=toupper(*aux);
                 aux++;
                 cont++;
@@ -180,37 +178,35 @@ void *formatearDato(char *dato,char tipo){
                         cont++;
                     }
                 }
-                salida=(void *)aux;
+                salida=(void *)dato;
                 break;
-        case 5:
-                salida=(void *)aux;
+            case 5:
+                salida=(void *)dato;
                 break;
         }
-    }else{
-        if(tipo==6){
-            int entero=atoi(dato);
-            salida=(void *)&entero;
-        }else if(tipo==7){
-            double flotante=atof(dato);
-            salida=(void *)&flotante;
+    }else if(tipo==6){
+        int *pEntero=malloc(sizeof(int));
+        if(pEntero){
+            *pEntero=atoi(dato);
+            salida=(void *)pEntero;
+        }
+    }else if(tipo==7){
+        double *pFlotante=malloc(sizeof(double));
+        if(pFlotante){
+            *pFlotante=atof(dato);
+            salida=(void *)pFlotante;
         }
     }
 
     return salida;
 }
 
-char *formatearNombreArchivo(char *dato, int tam){
-    char *aux=malloc(sizeof(char) * TDATO);
-    int cont=1;
-    strtok(dato, "\n");
-    aux=dato;
+void *validarYFormatearDato(char *dato,char tipoVal,char tipoFor){
+    void *salida=NULL;
 
-    while(cont<tam){
-        ++aux;
-        cont++;
-        *aux=tolower(*aux);
+    if(validarDato(dato,tipoVal)){
+        salida=formatearDato(dato,tipoFor);
     }
 
-    return dato;
+    return salida;
 }
-

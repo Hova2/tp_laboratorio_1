@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ArrayList.h" />
+		<Unit filename="eMercaderia.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="eMercaderia.h" />
 		<Unit filename="funciones.c">
 			<Option compilerVar="CC" />
 		</Unit>
