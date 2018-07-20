@@ -1,7 +1,7 @@
 #ifndef MOVIE_H_INCLUDED
 #define MOVIE_H_INCLUDED
 
-#define TDATO 100
+#define TDATO 10000
 
 typedef struct{
     unsigned int id;

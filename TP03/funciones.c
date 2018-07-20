@@ -256,7 +256,10 @@ char *leerDato(char *dato,char tipo){
                     }
                 }
                 break;
+            case 7:
+                break;
             }
+
             if(!dato){
                 break;
             }
@@ -401,7 +404,7 @@ int agregarPeliculaMain(EMovie lista[],int ultimoId){
         }else{
             link=malloc(sizeof(char) * TDATO);
             printf("Ingrese el link de la imagen de la pelicula: ");
-            if(leerDato(link,1)){
+            if(leerDato(link,7)){
                 strtok(link, "\n");
                 strcpy(movieTmp.linkImagen,link);
             }else{
