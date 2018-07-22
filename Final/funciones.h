@@ -61,11 +61,15 @@ void *formatearDato(char *,char);
  */
 void *validarYFormatearDato(char *,char,char);
 
-int parser(FILE*, ArrayList*, char*);
+int parserArchivo(ArrayList*, char*);
+int guardarArchivo(ArrayList*, char*);
 
 void cargarDepositos(ArrayList*,ArrayList*);
 void imprimirListaProductoDeposito(ArrayList*);
 void listarProductosDeposito(ArrayList*,ArrayList*);
+int buscarProducto(ArrayList*,int);
+void moverProductoDeposito(ArrayList*,ArrayList*);
+void moverProducto(ArrayList*,ArrayList*);
 
 
 #endif // FUNCIONES_H_INCLUDED

@@ -55,6 +55,7 @@ int main(){
                     listarProductosDeposito(lista1,lista2);
                     break;
                 case 3:
+                    moverProductoDeposito(lista1,lista2);
                     break;
                 case 4:
                     break;
