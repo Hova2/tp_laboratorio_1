@@ -40,3 +40,37 @@
 	<string.h>
 	"eMercaderia.h"
 
+1532280267 source:d:\juani\git\tp_laboratorio_1\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1532280267 d:\juani\git\tp_laboratorio_1\final\arraylist.h
+
+1532280267 source:d:\juani\git\tp_laboratorio_1\final\emercaderia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eMercaderia.h"
+
+1532280267 d:\juani\git\tp_laboratorio_1\final\emercaderia.h
+
+1532289483 source:d:\juani\git\tp_laboratorio_1\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"eMercaderia.h"
+
+1532289085 d:\juani\git\tp_laboratorio_1\final\funciones.h
+	"ArrayList.h"
+
+1532289454 source:d:\juani\git\tp_laboratorio_1\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+	"eMercaderia.h"
+

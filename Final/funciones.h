@@ -1,8 +1,9 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
+#include "ArrayList.h"
 
-//void cargarArreglo(ArrayList*);
-//void crearArchivoSueldo(ArrayList*);
+void imprimirOpcionMenu(int);
+void imprimirError(int);
 
 /** @brief Leer datos por pantalla
  *
@@ -59,6 +60,12 @@ void *formatearDato(char *,char);
  * @return puntero, del tipo puntero a void.
  */
 void *validarYFormatearDato(char *,char,char);
+
+int parser(FILE*, ArrayList*, char*);
+
+void cargarDepositos(ArrayList*,ArrayList*);
+void imprimirListaProductoDeposito(ArrayList*);
+void listarProductosDeposito(ArrayList*,ArrayList*);
 
 
 #endif // FUNCIONES_H_INCLUDED
