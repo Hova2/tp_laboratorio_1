@@ -59,6 +59,9 @@ void imprimirError(int codigo){
         case 8:
             printf("El producto no tiene la cantidad necesaria para poder descontar!!!\n");
             break;
+        case 9:
+            printf("El deposito origen no tiene productos!!!\n");
+            break;
      }
      system("pause");
 }
@@ -419,6 +422,7 @@ void imprimirListaProductoDeposito(ArrayList *lista){
             eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,i);
             printf ("%-8d | %-15.15s     | %8d\n",eMercaderia_getProducto(auxMercaderia), eMercaderia_getDescripcion(auxMercaderia), eMercaderia_getCantidad(auxMercaderia));
         }
+        system("pause");
     }else{
         imprimirError(3);
     }
@@ -506,11 +510,19 @@ void moverProductoDeposito(ArrayList *lista1, ArrayList *lista2){
 
         switch(opcion){
             case 1:
-                moverProducto(lista1,lista2);
+                if(!lista1->isEmpty(lista1)){
+                    moverProducto(lista1,lista2);
+                }else{
+                    imprimirError(9);
+                }
                 seguir = 'n';
                 break;
             case 2:
-                moverProducto(lista2,lista1);
+                if(!lista2->isEmpty(lista2)){
+                    moverProducto(lista2,lista1);
+                }else{
+                    imprimirError(9);
+                }
                 seguir = 'n';
                 break;
             default:
