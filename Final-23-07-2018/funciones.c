@@ -284,7 +284,6 @@ int parsearArchivo(ArrayList *lista, char *nombreArchivo){
                         eReparto_setProducto(auxReparto,(char *)auxProducto);
                         eReparto_setDireccion(auxReparto,(char *)auxDireccion);
                         eReparto_setLocalidad(auxReparto,(char *)auxLocalidad);
-                        printf("-%s-\n",eReparto_getLocalidad(auxReparto));
                         eReparto_setRecibe(auxReparto,(char *)auxRecibe);
                         lista->add(lista,auxReparto);
                         free(auxId);
@@ -369,6 +368,8 @@ void generarArchivoRepartoLocalidad(ArrayList *lista){
     while(seguir=='s'){
 
         system("cls");
+        mostrarLocalidades(lista);
+        system("cls");
         fflush(stdin);
 
         printf("Ingrese el nombre de la localidad: ");
@@ -410,330 +411,48 @@ int guardarArchivo(ArrayList *lista, char *nombreArchivo){
 
 }
 
+char existeLocalidad(ArrayList *localidades,char *localidad){
+
+    char salida=0;
+    int len=localidades->len(localidades);
+
+    if(len!=0){
+        for(int i=0;i<len;i++){
+            char *auxChar=(char *)localidades->get(localidades,i);
+            if(strcmp(localidad,auxChar)==0){
+                salida=1;
+                break;
+            }
+        }
+    }
+    return salida;
+}
+
 void imprimirLocalidades(ArrayList *lista){
-    ArrayList *clone=lista->clone(lista);
+    int len=lista->len(lista);
+    printf("Localidad\n");
+    printf("---------\n");
+    for(int i=0;i<len;i++){
+        char *auxLocalidad=(char *)lista->get(lista,i);
+        printf("%s\n",(char *)lista->get(lista,i));
+
+    }
+    system("pause");
+}
+
+void mostrarLocalidades(ArrayList *lista){
+
     ArrayList *localidades=al_newArrayList();
 
-    while(!clone->isEmpty(clone)){
-        eReparto *auxReparto=(eReparto *)clone->get(clone,0);
-        char *localidad=eReparto_getLocalidad(auxReparto);
-        localidades->add(localidades,localidad);
-        borrarLocalidad(clone,localidad);
-    }
-
-    int len=localidades->len(localidades);
-    int lenLoc=localidades->len(localidades);
-        printf("Localidad\n");
-        printf("---------\n");
-        for(int i=0;i<lenLoc;i++){
-            char *auxLocalidad=(char *)localidades->get(localidades,i);
-            printf("%s\n",(char *)localidades->get(localidades,i));
-
-        }
-        system("pause");
-}
-
-void borrarLocalidad(ArrayList *clone,char *localidad){
-    int len=clone->len(clone);
-    for(int i=0;i<len;i++){
-        eReparto *auxReparto=(eReparto *)clone->get(clone,i);
-        if(strcmp(localidad,eReparto_getLocalidad(auxReparto))==0){
-            clone->pop(clone,i);
-            len=clone->len(clone);
-            i=0;
-        }
-    }
-    return;
-}
-
-
-/*
-
-char buscarRepetidos(ArrayList *lista, int len){
-    char salida=0;
-    for(int i=0;i<len;i++){
-        for(int j=i+1;j<len;j++){
-            eMercaderia *auxMercaderia1=(eMercaderia*)lista->get(lista,i);
-            eMercaderia *auxMercaderia2=(eMercaderia*)lista->get(lista,j);
-            if(eMercaderia_getProducto(auxMercaderia1)==eMercaderia_getProducto(auxMercaderia2)){
-                salida=1;
-                break;
-            }
-        }
-    }
-    return salida;
-}
-
-char buscarRepetidosEntreLosDos(ArrayList *lista1,int len1,ArrayList *lista2,int len2){
-    char salida=0;
-    for(int i=0;i<len1;i++){
-        for(int j=0;j<len2;j++){
-            eMercaderia *auxMercaderia1=(eMercaderia*)lista1->get(lista1,i);
-            eMercaderia *auxMercaderia2=(eMercaderia*)lista2->get(lista2,j);
-            if(eMercaderia_getProducto(auxMercaderia1)==eMercaderia_getProducto(auxMercaderia2)){
-                salida=1;
-                break;
-            }
-        }
-    }
-    return salida;
-}
-
-int buscarProducto(ArrayList *lista, int producto){
     int len=lista->len(lista);
-    int salida=-1;
-    if(len>0){
-        for(int i=0;i<len;i++){
-            eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,i);
-            if(eMercaderia_getProducto(auxMercaderia)==producto){
-                salida=i;
-            }
-        }
-    }else{
-        imprimirError(3);
-    }
 
-    return salida;
+    for(int i=0;i<len;i++){
+        eReparto *auxReparto=(eReparto *)lista->get(lista,i);
+        char *localidad=eReparto_getLocalidad(auxReparto);
+        if(!existeLocalidad(localidades,localidad)){
+            localidades->add(localidades,localidad);
+        }
+    }
+    system("cls");
+    imprimirLocalidades(localidades);
 }
-
-void moverProductoDeposito(ArrayList *lista1, ArrayList *lista2){
-    int opcion=0;
-    int origen=0;
-    int destino=0;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese el numero de deposito origen para mover un producto: ");
-        scanf("%d",&origen);
-
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese el numero de deposito destino para mover un producto: ");
-        scanf("%d",&destino);
-
-        if(origen==1 && destino==2){
-            opcion=1;
-        }else if(origen==2 && destino==1){
-            opcion=2;
-        }
-
-        switch(opcion){
-            case 1:
-                if(!lista1->isEmpty(lista1)){
-                    moverProducto(lista1,lista2);
-                }else{
-                    imprimirError(9);
-                }
-                seguir = 'n';
-                break;
-            case 2:
-                if(!lista2->isEmpty(lista2)){
-                    moverProducto(lista2,lista1);
-                }else{
-                    imprimirError(9);
-                }
-                seguir = 'n';
-                break;
-            default:
-                imprimirError(1);
-                break;
-            }
-    }
-
-    guardarArchivo(lista1,ARCHIVO1);
-    guardarArchivo(lista2,ARCHIVO2);
-
-    return;
-}
-
-void moverProducto(ArrayList *origen, ArrayList *destino){
-    char *dato;
-    int *producto;
-    int indice=0;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        printf("---------------------------------------------\n");
-        printf(" La lista de productos del deposito origen es\n");
-        printf("---------------------------------------------\n");
-        imprimirListaProductoDeposito(origen);
-
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese el numero de producto que se quiere mover: ");
-        dato=leerDatoPorPantalla();
-
-        if(producto=(int *)validarYFormatearDato(dato,5,6)){
-            if((indice=buscarProducto(origen,*producto))!=-1){
-                eMercaderia *auxMercaderia=(eMercaderia*)origen->pop(origen,indice);
-                destino->add(destino,auxMercaderia);
-                seguir='n';
-            }else{
-                imprimirError(4);
-            }
-        }else{
-            imprimirError(5);
-        }
-    }
-    return;
-}
-
-void descontarProducto(ArrayList *lista,int indice){
-    char *dato;
-    int *cantidad;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese la cantidad que se quiere descontar: ");
-        dato=leerDatoPorPantalla();
-
-        if(cantidad=(int *)validarYFormatearDato(dato,5,6)){
-            if(*cantidad>0){
-                eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,indice);
-                int diferencia=eMercaderia_getCantidad(auxMercaderia)-*cantidad;
-                if(diferencia>=0){
-                    eMercaderia_setCantidad(auxMercaderia,diferencia);
-                    lista->set(lista,indice,auxMercaderia);
-                    seguir='n';
-                }else{
-                    imprimirError(8);
-                    seguir='n';
-                }
-            }else{
-                imprimirError(6);
-            }
-        }else{
-            imprimirError(7);
-        }
-    }
-
-    return;
-}
-
-void descontarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
-    char *dato;
-    int *producto;
-    int indice=0;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        printf("-------------------------------------------\n");
-        printf(" La lista de productos del deposito 1 es\n");
-        printf("-------------------------------------------\n");
-        imprimirListaProductoDeposito(lista1);
-        system("cls");
-        printf("-------------------------------------------\n");
-        printf(" La lista de productos del deposito 2 es\n");
-        printf("-------------------------------------------\n");
-        imprimirListaProductoDeposito(lista2);
-
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese el numero de producto: ");
-        dato=leerDatoPorPantalla();
-        if(producto=(int *)validarYFormatearDato(dato,5,6)){
-            if((indice=buscarProducto(lista1,*producto))!=-1){
-                descontarProducto(lista1,indice);
-                seguir='n';
-            }else if((indice=buscarProducto(lista2,*producto))!=-1){
-                descontarProducto(lista2,indice);
-                seguir='n';
-            }else{
-                imprimirError(4);
-            }
-        }else{
-            imprimirError(5);
-        }
-    }
-
-    guardarArchivo(lista1,ARCHIVO1);
-    guardarArchivo(lista2,ARCHIVO2);
-
-    return;
-}
-
-void agregarProducto(ArrayList *lista,int indice){
-    char *dato;
-    int *cantidad;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese la cantidad que se quiere agregar: ");
-        dato=leerDatoPorPantalla();
-
-        if(cantidad=(int *)validarYFormatearDato(dato,5,6)){
-            if(*cantidad>0){
-                eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,indice);
-                int suma=eMercaderia_getCantidad(auxMercaderia)+*cantidad;
-                eMercaderia_setCantidad(auxMercaderia,suma);
-                lista->set(lista,indice,auxMercaderia);
-                seguir='n';
-            }else{
-                imprimirError(6);
-            }
-        }else{
-            imprimirError(7);
-        }
-    }
-
-    return;
-}
-
-void agregarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
-    char *dato;
-    int *producto;
-    int indice=0;
-    char seguir='s';
-
-    while(seguir=='s'){
-        system("cls");
-        printf("-------------------------------------------\n");
-        printf(" La lista de productos del deposito 1 es\n");
-        printf("-------------------------------------------\n");
-        imprimirListaProductoDeposito(lista1);
-        system("cls");
-        printf("-------------------------------------------\n");
-        printf(" La lista de productos del deposito 2 es\n");
-        printf("-------------------------------------------\n");
-        imprimirListaProductoDeposito(lista2);
-
-        system("cls");
-        fflush(stdin);
-
-        printf("Ingrese el numero de producto: ");
-        dato=leerDatoPorPantalla();
-        if(producto=(int *)validarYFormatearDato(dato,5,6)){
-            if((indice=buscarProducto(lista1,*producto))!=-1){
-                agregarProducto(lista1,indice);
-                seguir='n';
-            }else if((indice=buscarProducto(lista2,*producto))!=-1){
-                agregarProducto(lista2,indice);
-                seguir='n';
-            }else{
-                imprimirError(4);
-            }
-        }else{
-            imprimirError(5);
-        }
-    }
-
-    guardarArchivo(lista1,ARCHIVO1);
-    guardarArchivo(lista2,ARCHIVO2);
-
-    return;
-}*/
-

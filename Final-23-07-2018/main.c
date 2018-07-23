@@ -51,7 +51,7 @@ int main(){
                     imprimirListaReparto(lista);
                     break;
                 case 3:
-                    imprimirLocalidades(lista);
+                    mostrarLocalidades(lista);
                     break;
                 case 4:
                     generarArchivoRepartoLocalidad(lista);

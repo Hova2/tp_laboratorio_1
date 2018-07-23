@@ -116,3 +116,37 @@
 	<string.h>
 	"eReparto.h"
 
+1532370584 source:d:\juani\git\tp_laboratorio_1\final-23-07-2018\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1532370584 d:\juani\git\tp_laboratorio_1\final-23-07-2018\arraylist.h
+
+1532371037 source:d:\juani\git\tp_laboratorio_1\final-23-07-2018\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"eReparto.h"
+
+1532371849 d:\juani\git\tp_laboratorio_1\final-23-07-2018\funciones.h
+	"ArrayList.h"
+
+1532370584 d:\juani\git\tp_laboratorio_1\final-23-07-2018\ereparto.h
+
+1532370584 source:d:\juani\git\tp_laboratorio_1\final-23-07-2018\ereparto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eReparto.h"
+
+1532372244 source:d:\juani\git\tp_laboratorio_1\final-23-07-2018\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+	"eReparto.h"
+

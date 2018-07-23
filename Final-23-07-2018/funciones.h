@@ -66,24 +66,7 @@ int parserArchivo(ArrayList*, char*);
 void cargarReparto(ArrayList*);
 void imprimirListaReparto(ArrayList*);
 int guardarArchivo(ArrayList*, char*);
+char existeLocalidad(ArrayList*,char*);
 void imprimirLocalidades(ArrayList*);
-void borrarLocalidad(ArrayList *,char *);
-
-/*
-
-
-
-char buscarRepetidos(ArrayList*,int);
-char buscarRepetidosEntreLosDos(ArrayList*,int,ArrayList*,int);
-
-
-int buscarProducto(ArrayList*,int);
-void moverProductoDeposito(ArrayList*,ArrayList*);
-void moverProducto(ArrayList*,ArrayList*);
-void descontarProducto(ArrayList*,int);
-void descontarProductosDeposito(ArrayList*,ArrayList*);
-void agregarProducto(ArrayList*,int);
-void agregarProductosDeposito(ArrayList*,ArrayList*);*/
-
-
+void mostrarLocalidades(ArrayList*);
 #endif // FUNCIONES_H_INCLUDED
