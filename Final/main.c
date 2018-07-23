@@ -61,6 +61,7 @@ int main(){
                     descontarProductosDeposito(lista1,lista2);
                     break;
                 case 5:
+                    agregarProductosDeposito(lista1,lista2);
                     break;
                 case 6:
                     seguir = 'n';

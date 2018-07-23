@@ -461,7 +461,7 @@ void moverProductoDeposito(ArrayList *lista1, ArrayList *lista2){
 }
 
 void moverProducto(ArrayList *origen, ArrayList *destino){
-    char* dato;
+    char *dato;
     int *producto;
     int indice=0;
     char seguir='s';
@@ -495,7 +495,7 @@ void moverProducto(ArrayList *origen, ArrayList *destino){
 }
 
 void descontarProducto(ArrayList *lista,int indice){
-    char* dato;
+    char *dato;
     int *cantidad;
     char seguir='s';
 
@@ -530,7 +530,7 @@ void descontarProducto(ArrayList *lista,int indice){
 }
 
 void descontarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
-    char* dato;
+    char *dato;
     int *producto;
     int indice=0;
     char seguir='s';
@@ -550,7 +550,7 @@ void descontarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
         system("cls");
         fflush(stdin);
 
-        printf("Ingrese el numero de producto que se quiere descontar: ");
+        printf("Ingrese el numero de producto: ");
         dato=leerDatoPorPantalla();
         if(producto=(int *)validarYFormatearDato(dato,5,6)){
             if((indice=buscarProducto(lista1,*producto))!=-1){
@@ -558,6 +558,80 @@ void descontarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
                 seguir='n';
             }else if((indice=buscarProducto(lista2,*producto))!=-1){
                 descontarProducto(lista2,indice);
+                seguir='n';
+            }else{
+                imprimirError(4);
+            }
+        }else{
+            imprimirError(5);
+        }
+    }
+
+    guardarArchivo(lista1,ARCHIVO1);
+    guardarArchivo(lista2,ARCHIVO2);
+
+    return;
+}
+
+void agregarProducto(ArrayList *lista,int indice){
+    char *dato;
+    int *cantidad;
+    char seguir='s';
+
+    while(seguir=='s'){
+        system("cls");
+        fflush(stdin);
+
+        printf("Ingrese la cantidad que se quiere agregar: ");
+        dato=leerDatoPorPantalla();
+
+        if(cantidad=(int *)validarYFormatearDato(dato,5,6)){
+            if(*cantidad>0){
+                eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,indice);
+                int suma=eMercaderia_getCantidad(auxMercaderia)+*cantidad;
+                eMercaderia_setCantidad(auxMercaderia,suma);
+                lista->set(lista,indice,auxMercaderia);
+                seguir='n';
+            }else{
+                imprimirError(6);
+            }
+        }else{
+            imprimirError(7);
+        }
+    }
+
+    return;
+}
+
+void agregarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
+    char *dato;
+    int *producto;
+    int indice=0;
+    char seguir='s';
+
+    while(seguir=='s'){
+        system("cls");
+        printf("-------------------------------------------\n");
+        printf(" La lista de productos del deposito 1 es\n");
+        printf("-------------------------------------------\n");
+        imprimirListaProductoDeposito(lista1);
+        system("cls");
+        printf("-------------------------------------------\n");
+        printf(" La lista de productos del deposito 2 es\n");
+        printf("-------------------------------------------\n");
+        imprimirListaProductoDeposito(lista2);
+
+        system("cls");
+        fflush(stdin);
+
+        printf("Ingrese el numero de producto: ");
+        dato=leerDatoPorPantalla();
+        if(producto=(int *)validarYFormatearDato(dato,5,6)){
+            if((indice=buscarProducto(lista1,*producto))!=-1){
+                agregarProducto(lista1,indice);
+                seguir='n';
+            }else if((indice=buscarProducto(lista2,*producto))!=-1){
+                agregarProducto(lista2,indice);
                 seguir='n';
             }else{
                 imprimirError(4);
