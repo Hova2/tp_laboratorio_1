@@ -70,6 +70,8 @@ void listarProductosDeposito(ArrayList*,ArrayList*);
 int buscarProducto(ArrayList*,int);
 void moverProductoDeposito(ArrayList*,ArrayList*);
 void moverProducto(ArrayList*,ArrayList*);
+void descontarProducto(ArrayList*,int);
+void descontarProductosDeposito(ArrayList*,ArrayList*);
 
 
 #endif // FUNCIONES_H_INCLUDED

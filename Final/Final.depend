@@ -56,17 +56,17 @@
 
 1532280267 d:\juani\git\tp_laboratorio_1\final\emercaderia.h
 
-1532292489 source:d:\juani\git\tp_laboratorio_1\final\main.c
+1532304275 source:d:\juani\git\tp_laboratorio_1\final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funciones.h"
 	"ArrayList.h"
 	"eMercaderia.h"
 
-1532294312 d:\juani\git\tp_laboratorio_1\final\funciones.h
+1532304201 d:\juani\git\tp_laboratorio_1\final\funciones.h
 	"ArrayList.h"
 
-1532295985 source:d:\juani\git\tp_laboratorio_1\final\funciones.c
+1532304551 source:d:\juani\git\tp_laboratorio_1\final\funciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

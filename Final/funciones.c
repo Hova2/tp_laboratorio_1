@@ -45,10 +45,19 @@ void imprimirError(int codigo){
             printf("La lista no contiene productos!!!\n");
             break;
         case 4:
-            printf("El producto no se encuentra en el deposito!!!\n");
+            printf("El producto no existe!!!\n");
             break;
         case 5:
             printf("El producto ingresado es invalido!!!\n");
+            break;
+        case 6:
+            printf("La cantidad debe ser mayor a cero!!!\n");
+            break;
+        case 7:
+            printf("La cantidad ingresada es invalida!!!\n");
+            break;
+        case 8:
+            printf("El producto no tiene la cantidad necesaria para poder descontar!!!\n");
             break;
      }
      system("pause");
@@ -482,5 +491,84 @@ void moverProducto(ArrayList *origen, ArrayList *destino){
             imprimirError(5);
         }
     }
+    return;
+}
+
+void descontarProducto(ArrayList *lista,int indice){
+    char* dato;
+    int *cantidad;
+    char seguir='s';
+
+    while(seguir=='s'){
+        system("cls");
+        fflush(stdin);
+
+        printf("Ingrese la cantidad que se quiere descontar: ");
+        dato=leerDatoPorPantalla();
+
+        if(cantidad=(int *)validarYFormatearDato(dato,5,6)){
+            if(*cantidad>0){
+                eMercaderia *auxMercaderia=(eMercaderia *)lista->get(lista,indice);
+                int diferencia=eMercaderia_getCantidad(auxMercaderia)-*cantidad;
+                if(diferencia>=0){
+                    eMercaderia_setCantidad(auxMercaderia,diferencia);
+                    lista->set(lista,indice,auxMercaderia);
+                    seguir='n';
+                }else{
+                    imprimirError(8);
+                    seguir='n';
+                }
+            }else{
+                imprimirError(6);
+            }
+        }else{
+            imprimirError(7);
+        }
+    }
+
+    return;
+}
+
+void descontarProductosDeposito(ArrayList *lista1, ArrayList *lista2){
+    char* dato;
+    int *producto;
+    int indice=0;
+    char seguir='s';
+
+    while(seguir=='s'){
+        system("cls");
+        printf("-------------------------------------------\n");
+        printf(" La lista de productos del deposito 1 es\n");
+        printf("-------------------------------------------\n");
+        imprimirListaProductoDeposito(lista1);
+        system("cls");
+        printf("-------------------------------------------\n");
+        printf(" La lista de productos del deposito 2 es\n");
+        printf("-------------------------------------------\n");
+        imprimirListaProductoDeposito(lista2);
+
+        system("cls");
+        fflush(stdin);
+
+        printf("Ingrese el numero de producto que se quiere descontar: ");
+        dato=leerDatoPorPantalla();
+        if(producto=(int *)validarYFormatearDato(dato,5,6)){
+            if((indice=buscarProducto(lista1,*producto))!=-1){
+                descontarProducto(lista1,indice);
+                seguir='n';
+            }else if((indice=buscarProducto(lista2,*producto))!=-1){
+                descontarProducto(lista2,indice);
+                seguir='n';
+            }else{
+                imprimirError(4);
+            }
+        }else{
+            imprimirError(5);
+        }
+    }
+
+    guardarArchivo(lista1,ARCHIVO1);
+    guardarArchivo(lista2,ARCHIVO2);
+
     return;
 }
