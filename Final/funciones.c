@@ -322,21 +322,87 @@ int guardarArchivo(ArrayList *lista, char *nombreArchivo){
 
 }
 
+char buscarRepetidos(ArrayList *lista, int len){
+    char salida=0;
+    for(int i=0;i<len;i++){
+        for(int j=i+1;j<len;j++){
+            eMercaderia *auxMercaderia1=(eMercaderia*)lista->get(lista,i);
+            eMercaderia *auxMercaderia2=(eMercaderia*)lista->get(lista,j);
+            if(eMercaderia_getProducto(auxMercaderia1)==eMercaderia_getProducto(auxMercaderia2)){
+                salida=1;
+                break;
+            }
+        }
+    }
+    return salida;
+}
+
+char buscarRepetidosEntreLosDos(ArrayList *lista1,int len1,ArrayList *lista2,int len2){
+    char salida=0;
+    for(int i=0;i<len1;i++){
+        for(int j=0;j<len2;j++){
+            eMercaderia *auxMercaderia1=(eMercaderia*)lista1->get(lista1,i);
+            eMercaderia *auxMercaderia2=(eMercaderia*)lista2->get(lista2,j);
+            if(eMercaderia_getProducto(auxMercaderia1)==eMercaderia_getProducto(auxMercaderia2)){
+                salida=1;
+                break;
+            }
+        }
+    }
+    return salida;
+}
+
 void cargarDepositos(ArrayList *lista1,ArrayList *lista2){
     int salida1=parsearArchivo(lista1,ARCHIVO1);
     int salida2=parsearArchivo(lista2,ARCHIVO2);
 
     system("cls");
 
-    if(salida1){
-        printf("Se cargaron %d registros correctamente del archivo 1\n\n",salida1);
+    if(salida1 && salida2){
+        int len1=lista1->len(lista1);
+        int len2=lista2->len(lista2);
+        if(buscarRepetidos(lista1,len1)){
+            printf("Se encontraron productos repetidos en el archivo 1. No se pueden cargar los archivos\n\n");
+            lista1->clear(lista1);
+            lista2->clear(lista2);
+        }else{
+            if(buscarRepetidos(lista2,len2)){
+                printf("Se encontraron productos repetidos en el archivo 2. No se pueden cargar los archivo\n\n");
+                lista1->clear(lista1);
+                lista2->clear(lista2);
+            }else{
+                if(buscarRepetidosEntreLosDos(lista1,len1,lista2,len2)){
+                    printf("Se encontraron productos que estan cargados en los dos archivos. No se pueden cargar los archivo\n\n");
+                    lista1->clear(lista1);
+                    lista2->clear(lista2);
+                }else{
+                    printf("Se cargaron %d registros correctamente del archivo 1\n\n",salida1);
+                    printf("Se cargaron %d registros correctamente del archivo 2\n\n",salida2);
+                }
+            }
+        }
+    }else if(salida1){
+        int len1=lista1->len(lista1);
+        if(buscarRepetidos(lista1,len1)){
+            printf("Se encontraron productos repetidos en el archivo 1. No se pueden cargar los archivos\n\n");
+            lista1->clear(lista1);
+            lista2->clear(lista2);
+        }else{
+            printf("Se cargaron %d registros correctamente del archivo 1\n\n",salida1);
+            printf("El archivo 2 no contiene registros\n\n");
+        }
+    }else if(salida2){
+        int len2=lista2->len(lista2);
+        if(buscarRepetidos(lista2,len2)){
+            printf("Se encontraron productos repetidos en el archivo 2. No se pueden cargar los archivos\n\n");
+            lista1->clear(lista1);
+            lista2->clear(lista2);
+        }else{
+            printf("Se cargaron %d registros correctamente del archivo 2\n\n",salida2);
+            printf("El archivo 1 no contiene registros\n\n");
+        }
     }else{
-        printf("El archivo 1 no contenia registros\n\n");
-    }
-    if(salida2){
-        printf("Se cargaron %d registros correctamente del archivo 2\n\n",salida2);
-    }else{
-        printf("El archivo 2 no contenia registros\n\n");
+        printf("Los archivos no contienen registros\n\n");
     }
 
     system("pause");
@@ -357,7 +423,6 @@ void imprimirListaProductoDeposito(ArrayList *lista){
         imprimirError(3);
     }
 
-    system("pause");
     return;
 }
 

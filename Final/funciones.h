@@ -64,6 +64,8 @@ void *validarYFormatearDato(char *,char,char);
 int parserArchivo(ArrayList*, char*);
 int guardarArchivo(ArrayList*, char*);
 
+char buscarRepetidos(ArrayList*,int);
+char buscarRepetidosEntreLosDos(ArrayList*,int,ArrayList*,int);
 void cargarDepositos(ArrayList*,ArrayList*);
 void imprimirListaProductoDeposito(ArrayList*);
 void listarProductosDeposito(ArrayList*,ArrayList*);

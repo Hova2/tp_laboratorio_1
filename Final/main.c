@@ -12,7 +12,7 @@ int main(){
     int opcion=0;
 
     while(seguir=='s'){
-        if(lista1->isEmpty(lista1) || lista2->isEmpty(lista2)){
+        if(lista1->isEmpty(lista1) && lista2->isEmpty(lista2)){
             system("cls");
             fflush(stdin);
 
