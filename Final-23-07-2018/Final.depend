@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1532025394 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1528746639 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\arraylist.h
+
+1532120585 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"parser.h"
+	"ArrayList.h"
+	"eMercaderia.h"
+
+1532110274 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.h
+
+1532120460 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"eMercaderia.h"
+
+1532120100 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"parser.h"
+
+1532115454 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\parser.h
+	"ArrayList.h"
+
+1532112437 c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\emercaderia.h
+
+1532115475 source:c:\users\iguglielmone_mecon\desktop\juani\git\tp_laboratorio_1\final\emercaderia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eMercaderia.h"
+
+1532280267 source:d:\juani\git\tp_laboratorio_1\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1532280267 d:\juani\git\tp_laboratorio_1\final\arraylist.h
+
+1532280267 source:d:\juani\git\tp_laboratorio_1\final\emercaderia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eMercaderia.h"
+
+1532280267 d:\juani\git\tp_laboratorio_1\final\emercaderia.h
+
+1532307096 source:d:\juani\git\tp_laboratorio_1\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"eMercaderia.h"
+
+1532309287 d:\juani\git\tp_laboratorio_1\final\funciones.h
+	"ArrayList.h"
+
+1532310415 source:d:\juani\git\tp_laboratorio_1\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+	"eMercaderia.h"
+
+1532355870 source:c:\test\tp_laboratorio_1\final\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1532355895 c:\test\tp_laboratorio_1\final\arraylist.h
+
+1532345174 source:c:\test\tp_laboratorio_1\final\emercaderia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eMercaderia.h"
+
+1532345174 c:\test\tp_laboratorio_1\final\emercaderia.h
+
+1532359551 source:c:\test\tp_laboratorio_1\final\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+	"eReparto.h"
+
+1532357710 source:c:\test\tp_laboratorio_1\final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	"ArrayList.h"
+	"eReparto.h"
+
+1532357891 c:\test\tp_laboratorio_1\final\funciones.h
+	"ArrayList.h"
+
+1532353933 c:\test\tp_laboratorio_1\final\ereparto.h
+
+1532354546 source:c:\test\tp_laboratorio_1\final\ereparto.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"eReparto.h"
+
